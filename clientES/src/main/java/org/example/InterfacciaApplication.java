@@ -4,9 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,8 +14,8 @@ public class InterfacciaApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         //try {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("src/main/resources/InterfacciaIniziale.fxml")));
-            String css = this.getClass().getResource("cssinterface.css").toExternalForm();
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("org.example/InterfacciaIniziale.fxml")));
+            String css = this.getClass().getResource("org.example/cssinterface.css").toExternalForm();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(css);
             stage.setScene(scene);
