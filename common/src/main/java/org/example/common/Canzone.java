@@ -1,6 +1,5 @@
-package org.example;
+package org.example.common;
 
-import java.io.*;
 public class Canzone {
     private String titolo;
     private String autore;

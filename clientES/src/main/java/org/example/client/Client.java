@@ -1,4 +1,6 @@
-package org.example;
+package org.example.client;
+
+import org.example.common.*;
 
 import java.rmi.*;
 import java.rmi.registry.*;

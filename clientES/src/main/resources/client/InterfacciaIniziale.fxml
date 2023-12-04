@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="526.0" minWidth="825.0" prefHeight="526.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="emotionalsongs.InterfacciaInizialeController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="526.0" minWidth="825.0" prefHeight="526.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.client.InterfacciaInizialeController">
    <children>
       <Button fx:id="btlogout" layoutY="427.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="45.0" prefWidth="261.0" text="Logout" textAlignment="CENTER">
          <font>
@@ -141,11 +141,11 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="ricercaa" layoutX="116.0" layoutY="94.0" mnemonicParsing="false" onAction="#ricercaAutoreeAnnoButton" prefHeight="45.0" prefWidth="145.0" text="Per Autore e Anno" AnchorPane.topAnchor="94.0">
+      <!-- <Button fx:id="ricercaa" layoutX="116.0" layoutY="94.0" mnemonicParsing="false" onAction="#ricercaAutoreeAnnoButton" prefHeight="45.0" prefWidth="145.0" text="Per Autore e Anno" AnchorPane.topAnchor="94.0">
          <font>
             <Font name="System Font" size="15.0" />
          </font>
-      </Button>
+      </Button> -->
       <TextField fx:id="titolor" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="27.0" prefWidth="229.0" promptText="Cerca..." AnchorPane.topAnchor="67.0">
          <font>
             <Font name="AppleGothic Regular" size="13.0" />
@@ -224,7 +224,7 @@
                         </Label>
                         <TextField fx:id="nomePlaylistI" layoutX="232.0" layoutY="149.0" prefHeight="27.0" prefWidth="130.0" promptText="Nome Playlist" />
                         <TextField fx:id="playlistCanzoneI" layoutX="231.0" layoutY="186.0" prefHeight="27.0" prefWidth="130.0" promptText="Canzone" />
-                        <Button fx:id="playlistcI" layoutX="265.0" layoutY="223.0" mnemonicParsing="false" onAction="#aggiungiCanzoneCButton" text="Aggiungi" />
+                     <!--   <Button fx:id="playlistcI" layoutX="265.0" layoutY="223.0" mnemonicParsing="false" onAction="#aggiungiCanzoneCButton" text="Aggiungi" /> -->
                      </children>
                   </AnchorPane>
                </children>
@@ -239,8 +239,8 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="textAreaPlaylist" editable="false" layoutX="27.0" layoutY="128.0" prefHeight="371.0" prefWidth="526.0" />
-                        <Button fx:id="cercaPlaylist" layoutX="412.0" layoutY="88.0" mnemonicParsing="false" onAction="#cercaPlaylistButton" prefHeight="26.0" prefWidth="74.0" text="cerca" />
+                    <!--    <TextArea fx:id="textAreaPlaylist" editable="false" layoutX="27.0" layoutY="128.0" prefHeight="371.0" prefWidth="526.0" /> -->
+                   <!--     <Button fx:id="cercaPlaylist" layoutX="412.0" layoutY="88.0" mnemonicParsing="false" onAction="#cercaPlaylistButton" prefHeight="26.0" prefWidth="74.0" text="cerca" /> -->
                      </children>
                   </AnchorPane>
                </children>
@@ -280,7 +280,7 @@
                            </font>
                         </Label>
                         <TextArea fx:id="areaemozioni" editable="false" layoutX="77.0" layoutY="134.0" prefHeight="199.0" prefWidth="431.0" />
-                        <Button fx:id="visualizzac" layoutX="239.0" layoutY="342.0" mnemonicParsing="false" onAction="#visualizzaButton" prefHeight="26.0" prefWidth="108.0" text="Conferma" />
+                     <!--   <Button fx:id="visualizzac" layoutX="239.0" layoutY="342.0" mnemonicParsing="false" onAction="#visualizzaButton" prefHeight="26.0" prefWidth="108.0" text="Conferma" /> -->
                      </children>
                   </AnchorPane>
                </children></Pane>
@@ -303,9 +303,9 @@
       <AnchorPane fx:id="logocentrale" layoutX="288.0" prefHeight="494.0" prefWidth="515.0">
          <children>
             <ImageView fitHeight="365.0" fitWidth="387.0" layoutX="94.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../icon/emotional%20song.png" />
-               </image>
+               <!--    <image>
+                  <Image url="@../icon/emotionalsong.png" />
+               </image>  -->
             </ImageView>
          </children>
       </AnchorPane>

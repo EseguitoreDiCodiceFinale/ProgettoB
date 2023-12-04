@@ -1,6 +1,5 @@
-package org.example;
+package org.example.server;
 
-import javax.xml.crypto.Data;
 import java.sql.*;
 
 public class DatabaseHandler {

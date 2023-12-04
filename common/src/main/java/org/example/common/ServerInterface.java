@@ -1,9 +1,8 @@
-package org.example;
+package org.example.common;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.List;
 
 public interface ServerInterface extends Remote {
     boolean Registrazione(Utente u) throws RemoteException;

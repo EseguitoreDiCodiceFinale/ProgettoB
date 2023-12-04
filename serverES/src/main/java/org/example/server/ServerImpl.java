@@ -1,6 +1,7 @@
-package org.example;
+package org.example.server;
 
-import javax.xml.crypto.Data;
+import org.example.common.*;
+
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -8,7 +9,6 @@ import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 

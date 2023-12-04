@@ -1,7 +1,6 @@
-package org.example;
+package org.example.server;
 
 import java.rmi.RemoteException;
-import java.sql.SQLException;
 
 public class ServerMain {
     public static void main(String[] args) {

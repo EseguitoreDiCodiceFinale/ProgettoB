@@ -1,4 +1,4 @@
-package org.example;
+package org.example.client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.example.common.Canzone;
+import org.example.common.Playlist;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
