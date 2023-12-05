@@ -27,6 +27,8 @@ public class InterfacciaInizialeController {
     @FXML
     public Button aggiungibrano;
     @FXML
+    public Button eliminabrano;
+    @FXML
     private Button accedi;
 
     @FXML
@@ -102,6 +104,8 @@ public class InterfacciaInizialeController {
     private Pane playlistI_pane;
     @FXML
     private Pane visualizza_playlist_pane;
+    @FXML
+    public Pane eliminacanzone_pane;
     @FXML
     private TextArea areaemozioni;
     @FXML
@@ -348,6 +352,7 @@ public class InterfacciaInizialeController {
                     registrati.setVisible(false);
                     aggiungibrano.setVisible(true);
                     visualizzaplaylist.setVisible(true);
+                    eliminabrano.setVisible(true);
                     btlogout.setVisible(true);
                     break;
                 case 1:
@@ -601,6 +606,7 @@ public class InterfacciaInizialeController {
         emotion_pane.setVisible(false);
         playlist_pane.setVisible(false);
         playlistI_pane.setVisible(false);
+        eliminacanzone_pane.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
         logocentrale.setVisible(false);
         creaplaylist.setVisible(false);
@@ -608,6 +614,7 @@ public class InterfacciaInizialeController {
         inserisciemozioni.setVisible(false);
         visualizzaplaylist.setVisible(false);
         btlogout.setVisible(false);
+        eliminabrano.setVisible(false);
         registrati.setVisible(true);
         login.setVisible(true);
         visualizzacanzoni.setVisible(true);

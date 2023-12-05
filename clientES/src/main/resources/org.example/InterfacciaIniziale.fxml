@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="526.0" minWidth="825.0" prefHeight="526.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="emotionalsongs.InterfacciaInizialeController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="526.0" minWidth="825.0" prefHeight="526.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="emotionalsongs.InterfacciaInizialeController">
    <children>
-      <Button fx:id="btlogout" layoutY="427.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="45.0" prefWidth="261.0" text="Logout" textAlignment="CENTER">
+      <Button fx:id="btlogout" layoutX="1.0" layoutY="434.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="45.0" prefWidth="261.0" text="Logout" textAlignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="accedi" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="201.0" mnemonicParsing="false" onAction="#accediButton" prefHeight="45.0" prefWidth="261.0" text="Accedi" wrapText="true" AnchorPane.topAnchor="201.0">
+      <Button fx:id="accedi" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="164.0" mnemonicParsing="false" onAction="#accediButton" prefHeight="45.0" prefWidth="261.0" text="Accedi" wrapText="true" AnchorPane.topAnchor="164.0">
          <padding>
             <Insets left="70.0" />
          </padding>
@@ -34,7 +34,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="registrati" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="156.0" mnemonicParsing="false" onAction="#registratiButton" prefHeight="45.0" prefWidth="261.0" text="Registrati" textOverrun="CLIP" AnchorPane.topAnchor="156.0">
+      <Button fx:id="registrati" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="119.0" mnemonicParsing="false" onAction="#registratiButton" prefHeight="45.0" prefWidth="261.0" text="Registrati" textOverrun="CLIP" AnchorPane.topAnchor="119.0">
          <font>
             <Font name="System Font" size="15.0" />
          </font>
@@ -48,7 +48,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="visualizza" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="292.0" mnemonicParsing="false" onAction="#visualizzaEmozioniButton" prefHeight="45.0" prefWidth="261.0" text="Visualizza Emozioni" AnchorPane.topAnchor="292.0">
+      <Button fx:id="visualizza" alignment="BASELINE_LEFT" layoutX="-2.0" layoutY="299.0" mnemonicParsing="false" onAction="#visualizzaEmozioniButton" prefHeight="45.0" prefWidth="261.0" text="Visualizza Emozioni" AnchorPane.topAnchor="299.0">
          <font>
             <Font size="15.0" />
          </font>
@@ -62,7 +62,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button fx:id="creaplaylist" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="156.0" mnemonicParsing="false" onAction="#creaPlaylistButton" prefHeight="45.0" prefWidth="261.0" text="Crea Playlist">
+      <Button fx:id="creaplaylist" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="119.0" mnemonicParsing="false" onAction="#creaPlaylistButton" prefHeight="45.0" prefWidth="261.0" text="Crea Playlist">
          <font>
             <Font size="15.0" />
          </font>
@@ -77,7 +77,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="visualizzacanzoni" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="247.0" mnemonicParsing="false" onAction="#visualizzacanzoniButton" prefHeight="45.0" prefWidth="261.0" text="Visualizza Canzoni">
+      <Button fx:id="visualizzacanzoni" alignment="BASELINE_LEFT" layoutX="-2.0" layoutY="254.0" mnemonicParsing="false" onAction="#visualizzacanzoniButton" prefHeight="45.0" prefWidth="261.0" text="Visualizza Canzoni">
          <font>
             <Font size="15.0" />
          </font>
@@ -92,7 +92,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="inserisciemozioni" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="337.0" mnemonicParsing="false" onAction="#inserisciEmozioniButton" prefHeight="45.0" prefWidth="261.0" text="Inserisci Emozioni">
+      <Button fx:id="inserisciemozioni" alignment="BASELINE_LEFT" layoutX="-2.0" layoutY="344.0" mnemonicParsing="false" onAction="#inserisciEmozioniButton" prefHeight="45.0" prefWidth="261.0" text="Inserisci Emozioni">
          <font>
             <Font size="15.0" />
          </font>
@@ -107,7 +107,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="aggiungibrano" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="201.0" mnemonicParsing="false" onAction="#aggiungiBranoButton" prefHeight="45.0" prefWidth="261.0" text="Aggiungi Brano">
+      <Button fx:id="aggiungibrano" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="164.0" mnemonicParsing="false" onAction="#aggiungiBranoButton" prefHeight="45.0" prefWidth="261.0" text="Aggiungi Brano">
          <font>
             <Font size="15.0" />
          </font>
@@ -122,11 +122,22 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="ricercat" layoutX="1.0" layoutY="94.0" mnemonicParsing="false" onAction="#ricercaTitoloButton" prefHeight="45.0" prefWidth="116.0" text="Per Titolo" AnchorPane.topAnchor="94.0">
+      <Button fx:id="eliminabrano" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="209.0" mnemonicParsing="false" onAction="#eliminaBranoButton" prefHeight="45.0" prefWidth="261.0" text="Elimina Brano">
          <font>
-            <Font name="System Font" size="15.0" />
-         </font></Button>
-      <Button fx:id="visualizzaplaylist" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="382.0" mnemonicParsing="false" onAction="#visualizzaPlaylistButton" prefHeight="45.0" prefWidth="261.0" text="Visualizza Playlist">
+            <Font size="15.0" />
+         </font>
+         <padding>
+            <Insets left="70.0" />
+         </padding>
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="visualizzaplaylist" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="389.0" mnemonicParsing="false" onAction="#visualizzaPlaylistButton" prefHeight="45.0" prefWidth="261.0" text="Visualizza Playlist">
          <font>
             <Font size="15.0" />
          </font>
@@ -140,11 +151,6 @@
                </image>
             </ImageView>
          </graphic>
-      </Button>
-      <Button fx:id="ricercaa" layoutX="116.0" layoutY="94.0" mnemonicParsing="false" onAction="#ricercaAutoreeAnnoButton" prefHeight="45.0" prefWidth="145.0" text="Per Autore e Anno" AnchorPane.topAnchor="94.0">
-         <font>
-            <Font name="System Font" size="15.0" />
-         </font>
       </Button>
       <TextField fx:id="titolor" alignment="CENTER" layoutX="14.0" layoutY="67.0" prefHeight="27.0" prefWidth="229.0" promptText="Cerca..." AnchorPane.topAnchor="67.0">
          <font>
@@ -229,18 +235,18 @@
                   </AnchorPane>
                </children>
             </Pane>
-            <Pane fx:id="visualizza_playlist_pane" prefHeight="526.0" prefWidth="564.0">
+            <Pane fx:id="eliminacanzone_pane" prefHeight="526.0" prefWidth="564.0">
                <children>
-                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="564.0">
+                  <AnchorPane prefHeight="400.0" prefWidth="564.0">
                      <children>
-                        <TextField fx:id="textFiledPlaylist" layoutX="175.0" layoutY="88.0" prefHeight="26.0" prefWidth="214.0" promptText="inserire..." />
-                        <Label layoutX="201.0" layoutY="59.0" prefHeight="23.0" prefWidth="199.0" text="Inserire nome playlist:">
+                        <Label fx:id="titoloInserisci1" alignment="CENTER" layoutX="83.0" layoutY="105.0" prefHeight="34.0" prefWidth="431.0" text="Inserisci canzone da eliminare dalla playlist:" textAlignment="CENTER">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Font" size="19.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="textAreaPlaylist" editable="false" layoutX="27.0" layoutY="128.0" prefHeight="371.0" prefWidth="526.0" />
-                        <Button fx:id="cercaPlaylist" layoutX="412.0" layoutY="88.0" mnemonicParsing="false" onAction="#cercaPlaylistButton" prefHeight="26.0" prefWidth="74.0" text="cerca" />
+                        <TextField fx:id="nomePlaylistI1" layoutX="232.0" layoutY="149.0" prefHeight="27.0" prefWidth="130.0" promptText="Nome Playlist" />
+                        <TextField fx:id="playlistCanzoneI1" layoutX="231.0" layoutY="186.0" prefHeight="27.0" prefWidth="130.0" promptText="Canzone" />
+                        <Button fx:id="playlistcI1" layoutX="265.0" layoutY="223.0" mnemonicParsing="false" onAction="#eliminaCanzoneCButton" text="Elimina" />
                      </children>
                   </AnchorPane>
                </children>
@@ -294,6 +300,22 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </Pane>
+            <Pane fx:id="visualizza_playlist_pane" prefHeight="526.0" prefWidth="564.0">
+               <children>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="564.0">
+                     <children>
+                        <TextField fx:id="textFiledPlaylist" layoutX="175.0" layoutY="88.0" prefHeight="26.0" prefWidth="214.0" promptText="inserire..." />
+                        <Label layoutX="201.0" layoutY="59.0" prefHeight="23.0" prefWidth="199.0" text="Inserire nome playlist:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="textAreaPlaylist" editable="false" layoutX="27.0" layoutY="128.0" prefHeight="371.0" prefWidth="526.0" />
+                        <Button fx:id="cercaPlaylist" layoutX="412.0" layoutY="88.0" mnemonicParsing="false" onAction="#cercaPlaylistButton" prefHeight="26.0" prefWidth="74.0" text="cerca" />
                      </children>
                   </AnchorPane>
                </children>
