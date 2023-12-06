@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="59a733cf-a8b6-4a44-a7a1-503883b471ec" name="Changes" comment="Start">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientES/src/main/java/org/example/client/InterfacciaInizialeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/clientES/src/main/java/org/example/client/InterfacciaInizialeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clientES/src/main/resources/client/InterfacciaIniziale.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/clientES/src/main/resources/client/InterfacciaIniziale.fxml" afterDir="false" />
     </list>
     <list id="f5e382d2-7104-4578-a3b5-c977be57cfd1" name="Changes by simon" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +47,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Merging master",
     "jdk.selected.JAVA_MODULE": "19",
     "last_opened_file_path": "C:/Program Files/javafx-sdk-19/lib",
     "onboarding.tips.debug.path": "D:/Progetto/ProgettoB/common/src/main/java/org/example/Main.java",
@@ -108,7 +110,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701077938225</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Start">
+      <option name="closed" value="true" />
+      <created>1701712792865</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701712792865</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -123,6 +133,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="FIX E DAI" />
     <MESSAGE value="Start" />
     <option name="LAST_COMMIT_MESSAGE" value="Start" />
   </component>

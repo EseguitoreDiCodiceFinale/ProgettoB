@@ -29,6 +29,8 @@ public class InterfacciaInizialeController {
     @FXML
     public Button aggiungibrano;
     @FXML
+    public Button eliminabrano;
+    @FXML
     private Button accedi;
 
     @FXML
@@ -104,6 +106,8 @@ public class InterfacciaInizialeController {
     private Pane playlistI_pane;
     @FXML
     private Pane visualizza_playlist_pane;
+    @FXML
+    public Pane eliminacanzone_pane;
     @FXML
     private TextArea areaemozioni;
     @FXML
@@ -350,6 +354,7 @@ public class InterfacciaInizialeController {
                     registrati.setVisible(false);
                     aggiungibrano.setVisible(true);
                     visualizzaplaylist.setVisible(true);
+                    eliminabrano.setVisible(true);
                     btlogout.setVisible(true);
                     break;
                 case 1:
@@ -603,13 +608,16 @@ public class InterfacciaInizialeController {
         emotion_pane.setVisible(false);
         playlist_pane.setVisible(false);
         playlistI_pane.setVisible(false);
+        eliminacanzone_pane.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
         logocentrale.setVisible(false);
         creaplaylist.setVisible(false);
         aggiungibrano.setVisible(false);
         inserisciemozioni.setVisible(false);
         visualizzaplaylist.setVisible(false);
+        eliminacanzone_pane.setVisible(false);
         btlogout.setVisible(false);
+        eliminabrano.setVisible(false);
         registrati.setVisible(true);
         login.setVisible(true);
         visualizzacanzoni.setVisible(true);
@@ -648,6 +656,7 @@ public class InterfacciaInizialeController {
         playlist_pane.setVisible(false);
         playlistI_pane.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
+        eliminacanzone_pane.setVisible(false);
         logocentrale.setVisible(false);
         mostracanzoni_pane.setVisible(false);
     }
@@ -658,6 +667,7 @@ public class InterfacciaInizialeController {
         playlist_pane.setVisible(true);
         playlistI_pane.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
+        eliminacanzone_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
     }
     @FXML
@@ -667,6 +677,7 @@ public class InterfacciaInizialeController {
         playlist_pane.setVisible(false);
         playlistI_pane.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
+        eliminacanzone_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
     }
     @FXML
@@ -675,6 +686,18 @@ public class InterfacciaInizialeController {
         emotionV_pane.setVisible(false);
         playlist_pane.setVisible(false);
         playlistI_pane.setVisible(true);
+        visualizza_playlist_pane.setVisible(false);
+        eliminacanzone_pane.setVisible(false);
+        mostracanzoni_pane.setVisible(false);
+    }
+
+    @FXML
+    void  eliminaBranoButton(ActionEvent event){
+        eliminacanzone_pane.setVisible(true);
+        emotion_pane.setVisible(false);
+        emotionV_pane.setVisible(false);
+        playlist_pane.setVisible(false);
+        playlistI_pane.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
     }
@@ -688,6 +711,7 @@ public class InterfacciaInizialeController {
         emotion_pane.setVisible(false);
         playlist_pane.setVisible(false);
         playlistI_pane.setVisible(false);
+        eliminacanzone_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
     }
 
@@ -700,6 +724,7 @@ public class InterfacciaInizialeController {
         emotion_pane.setVisible(false);
         playlist_pane.setVisible(false);
         playlistI_pane.setVisible(false);
+        eliminacanzone_pane.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
         logocentrale.setVisible(false);
 
@@ -719,6 +744,7 @@ public class InterfacciaInizialeController {
         emotion_pane.setVisible(false);
         playlist_pane.setVisible(false);
         playlistI_pane.setVisible(false);
+        eliminacanzone_pane.setVisible(false);
         visualizza_playlist_pane.setVisible(true);
         logocentrale.setVisible(false);
 
