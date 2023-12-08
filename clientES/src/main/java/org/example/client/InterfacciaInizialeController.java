@@ -110,6 +110,7 @@ public class InterfacciaInizialeController {
     public Pane eliminacanzone_pane;
     @FXML
     private TextArea areaemozioni;
+
     @FXML
     private Label titolo;
 
@@ -443,7 +444,7 @@ public class InterfacciaInizialeController {
     }
 
     @FXML
-    void aggiungibrano(ActionEvent event) throws RemoteException{
+    void aggiungiCanzoneCButton(ActionEvent event) throws RemoteException{
         //controlli client
         if(!(nomePlaylistI.getText().equals("")|| playlistCanzoneI.getText().equals(""))){
             switch (Client.getInstance().InserisciCanzone(playlistCanzoneI.getText(), nomePlaylistI.getText())){
@@ -485,7 +486,7 @@ public class InterfacciaInizialeController {
         }
     }
     @FXML
-    void cancellabrano(ActionEvent event) throws RemoteException{
+    void eliminaCanzoneCButton(ActionEvent event) throws RemoteException{
         //controlli client
         if(!(nomePlaylistIC.getText().equals("")|| playlistCanzoneIC.getText().equals(""))){
             switch (Client.getInstance().EliminaCanzone(playlistCanzoneIC.getText(), nomePlaylistIC.getText())){
@@ -531,7 +532,7 @@ public class InterfacciaInizialeController {
     void ricercaTitoloButton(ActionEvent event) {
         String input = titolor.getText();
         try {
-            ArrayList<Canzone> output = Client.getInstance().cercaBranoT(input);
+            ArrayList<Canzone> output = Client.getInstance().CercaBranoT(input);
             if (output.size() == 0) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Risultato ricerca:");
@@ -555,7 +556,7 @@ public class InterfacciaInizialeController {
     void ricercaAutoreButton(ActionEvent event) {
         String input = titolor.getText();
         try {
-            ArrayList<Canzone> output = Client.getInstance().cercaBranoA(input);
+            ArrayList<Canzone> output = Client.getInstance().CercaBranoA(input);
             if (output.size() == 0) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Risultato ricerca:");
@@ -579,7 +580,7 @@ public class InterfacciaInizialeController {
     void ricercaAnnoButton(ActionEvent event) {
         String input = titolor.getText();
         try {
-            ArrayList<Canzone> output = Client.getInstance().cercaBranoY(input);
+            ArrayList<Canzone> output = Client.getInstance().CercaBranoY(input);
             if (output.size() == 0) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Risultato ricerca:");
@@ -598,6 +599,27 @@ public class InterfacciaInizialeController {
             }
         }
         catch(Exception e){ e.printStackTrace();}
+    }
+    @FXML
+    public void cercaPlaylistButton(ActionEvent event){
+       /* String input = nomePlaylist.getText();
+        try {
+            ArrayList<Playlist> output = Client.getInstance().CercaPlaylist(input);
+            if (output.size() == 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Risultato ricerca:");
+                alert.setHeaderText(null);
+                alert.setContentText("la playlist non è stato trovata");
+                alert.showAndWait();
+            } else {
+
+            }
+        }
+        catch(Exception e){ e.printStackTrace();} */
+    }
+    @FXML
+    public void visualizzaEmozioniCButton(ActionEvent event){
+
     }
     @FXML
     public void logoutButton(ActionEvent event){

@@ -229,7 +229,7 @@
                         </Label>
                         <TextField fx:id="nomePlaylistI" layoutX="232.0" layoutY="149.0" prefHeight="27.0" prefWidth="130.0" promptText="Nome Playlist" />
                         <TextField fx:id="playlistCanzoneI" layoutX="231.0" layoutY="186.0" prefHeight="27.0" prefWidth="130.0" promptText="Canzone" />
-                        <!--    <Button fx:id="playlistcI" layoutX="265.0" layoutY="223.0" mnemonicParsing="false" onAction="#aggiungiCanzoneCButton" text="Aggiungi" /> -->
+                        <Button fx:id="playlistcI" layoutX="265.0" layoutY="223.0" mnemonicParsing="false" onAction="#aggiungiCanzoneCButton" text="Aggiungi" />
                          </children>
                       </AnchorPane>
                    </children>
@@ -245,7 +245,7 @@
                             </Label>
                             <TextField fx:id="nomePlaylistI1" layoutX="232.0" layoutY="149.0" prefHeight="27.0" prefWidth="130.0" promptText="Nome Playlist" />
                             <TextField fx:id="playlistCanzoneI1" layoutX="231.0" layoutY="186.0" prefHeight="27.0" prefWidth="130.0" promptText="Canzone" />
-                            <!--     <Button fx:id="playlistcI1" layoutX="265.0" layoutY="223.0" mnemonicParsing="false" onAction="#eliminaCanzoneCButton" text="Elimina" /> -->
+                            <Button fx:id="playlistcI1" layoutX="265.0" layoutY="223.0" mnemonicParsing="false" onAction="#eliminaCanzoneCButton" text="Elimina" />
                           </children>
                        </AnchorPane>
                     </children>
@@ -282,7 +282,7 @@
                                 </font>
                              </Label>
                              <TextArea fx:id="areaemozioni" editable="false" layoutX="77.0" layoutY="134.0" prefHeight="199.0" prefWidth="431.0" />
-                             <!--      <Button fx:id="visualizzac" layoutX="239.0" layoutY="342.0" mnemonicParsing="false" onAction="#visualizzaButton" prefHeight="26.0" prefWidth="108.0" text="Conferma" /> -->
+                             <Button fx:id="visualizzac" layoutX="239.0" layoutY="342.0" mnemonicParsing="false" onAction="#visualizzaEmozioniCButton" prefHeight="26.0" prefWidth="108.0" text="Conferma" />
                      </children>
                   </AnchorPane>
                </children></Pane>
@@ -310,8 +310,8 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <!--   <TextArea fx:id="textAreaPlaylist" editable="false" layoutX="27.0" layoutY="128.0" prefHeight="371.0" prefWidth="526.0" /> -->
-                        <!--   <Button fx:id="cercaPlaylist" layoutX="412.0" layoutY="88.0" mnemonicParsing="false" onAction="#cercaPlaylistButton" prefHeight="26.0" prefWidth="74.0" text="cerca" /> -->
+                        <ListView fx:id="textAreaPlaylist" editable="false" layoutX="27.0" layoutY="128.0" prefHeight="371.0" prefWidth="526.0" />
+                        <Button fx:id="cercaPlaylist" layoutX="412.0" layoutY="88.0" mnemonicParsing="false" onAction="#cercaPlaylistButton" prefHeight="26.0" prefWidth="74.0" text="cerca" />
                         </children>
                      </AnchorPane>
                   </children>
@@ -321,9 +321,9 @@
          <AnchorPane fx:id="logocentrale" layoutX="288.0" prefHeight="494.0" prefWidth="515.0">
             <children>
                <ImageView fitHeight="365.0" fitWidth="387.0" layoutX="94.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
-                <!--  <image>
-                     <Image url="@../icon/Emotionalsong.png" />
-                  </image> -->
+                  <image>
+                     <Image url="@../icon/logo.png" />
+                  </image>
             </ImageView>
          </children>
       </AnchorPane>

@@ -123,6 +123,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public ArrayList<Canzone> CercaBranoY(String anno) throws RemoteException {
         return null;
     }
+    @Override
+    public ArrayList<Playlist> CercaPlaylist(String nomeU, String nomeP) throws RemoteException {
+        return null;
+    }
 
     @Override
     public ArrayList<Canzone> VisualizzaCanzoni() throws RemoteException {

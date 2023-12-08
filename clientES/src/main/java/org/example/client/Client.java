@@ -121,14 +121,17 @@ public class Client extends Thread{
         return server.EliminaCanzone(UtenteAttuale, nomeC, nomeP);
     }
 
-    public synchronized ArrayList<Canzone> cercaBranoT(String titolo) throws RemoteException{
+    public synchronized ArrayList<Canzone> CercaBranoT(String titolo) throws RemoteException{
         return server.CercaBranoT(titolo);
     }
-    public synchronized ArrayList<Canzone> cercaBranoA(String autore) throws RemoteException{
+    public synchronized ArrayList<Canzone> CercaBranoA(String autore) throws RemoteException{
         return server.CercaBranoA(autore);
     }
-    public synchronized ArrayList<Canzone> cercaBranoY(String anno) throws RemoteException{
+    public synchronized ArrayList<Canzone> CercaBranoY(String anno) throws RemoteException{
         return server.CercaBranoY(anno);
+    }
+    public synchronized ArrayList<Playlist> CercaPlaylist(String nomeP) throws RemoteException{
+        return server.CercaPlaylist(UtenteAttuale, nomeP);
     }
 
     public synchronized ArrayList<Canzone> VisualizzaCanzoni() throws RemoteException{
