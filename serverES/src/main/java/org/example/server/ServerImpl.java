@@ -90,17 +90,69 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     @Override
     public boolean InserisciEmozione(Emozione e) throws RemoteException {
+        try{
+            int idAssocia;
+            DatabaseHandler handler = new DatabaseHandler();
+            handler.connectDB();
+            ResultSet resultSet = handler.select("SELECT MAX(idassocia) AS ultimo_valore FROM associa");
 
+            if (resultSet.next()) {
+                idAssocia = resultSet.getInt("ultimo_valore");
+            }
+            else {
+                idAssocia = 1;
+            }
+
+            final String inserisciAssocia =
+                    "INSERT INTO associa (idassocia, punteggio, note, idutente, titolocanzone, autorecanzone, categoriaemozione)" +
+                            "VALUES('" +
+                            idAssocia + "','" +
+                            e.getPunteggio() + "','" +
+                            e.getNote() + "','" +
+                            e.getUtente() + "','" +
+                            e.getCanzone() + "','" +
+                            //e.getAutore() + "','" +
+                            e.getCategoria() + "');";
+
+            boolean esito = handler.insert(inserisciAssocia);
+            handler.disconnect();
+        }catch (SQLException ex)
+        {
+            ex.printStackTrace();
+            return false;
+        }
         return false;
     }
 
     @Override
     public int CreaPlaylist(String nome, String titolo, String nomeU) throws RemoteException {
-        return 0;
+        try{
+        String tempAutore = "";
+        final String inserisciPlaylist =
+                "INSERT INTO playlist (idutente, nome, titolocanzone, autorecanzone) " +
+                        "VALUES('" +
+                        nomeU + "','" +
+                        nome + "','" +
+                        titolo + "','" +
+                        tempAutore + "');";
+            DatabaseHandler handler = new DatabaseHandler();
+            boolean esito = handler.insert(inserisciPlaylist);
+            handler.disconnect();
+            if(esito)
+            {
+                return 1;
+            }else{
+                return 0;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     @Override
     public int InserisciCanzone(String user, String nome, String canzone) throws RemoteException {
+
         return 0;
     }
 
@@ -110,21 +162,94 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public ArrayList<Canzone> CercaBranoT(String titolo) throws RemoteException {
-        return null;
+    public ArrayList<Canzone> CercaBranoT(String ti) throws RemoteException {
+        try{
+            final String selezionaCanzoni =
+                    "SELECT * FROM canzone WHERE titolo='" + ti + "';";
+
+            DatabaseHandler handler = new DatabaseHandler();
+            handler.connectDB();
+
+            ResultSet resultSet = handler.select(selezionaCanzoni);
+            ArrayList<Canzone> listaCanzoni = new ArrayList<>();
+            while(resultSet.next())
+            {
+                String titolo = resultSet.getString("titolo");
+                String autore = resultSet.getString("autore");
+                String anno = resultSet.getString("anno");
+                String album = resultSet.getString("album");
+                String durata = resultSet.getString("durata");
+                String genere = resultSet.getString("genere");
+                Canzone canzone = new Canzone(titolo, autore, anno, album);
+                listaCanzoni.add(canzone);
+            }
+            return listaCanzoni;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
-    public ArrayList<Canzone> CercaBranoA(String autore) throws RemoteException {
-        return null;
+    public ArrayList<Canzone> CercaBranoA(String au) throws RemoteException {
+        try{
+            final String selezionaCanzoni =
+                    "SELECT * FROM canzone WHERE titolo='" + au + "';";
+
+            DatabaseHandler handler = new DatabaseHandler();
+            handler.connectDB();
+
+            ResultSet resultSet = handler.select(selezionaCanzoni);
+            ArrayList<Canzone> listaCanzoni = new ArrayList<>();
+            while(resultSet.next())
+            {
+                String titolo = resultSet.getString("titolo");
+                String autore = resultSet.getString("autore");
+                String anno = resultSet.getString("anno");
+                String album = resultSet.getString("album");
+                String durata = resultSet.getString("durata");
+                String genere = resultSet.getString("genere");
+                Canzone canzone = new Canzone(titolo, autore, anno, album);
+                listaCanzoni.add(canzone);
+            }
+            return listaCanzoni;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
-    public ArrayList<Canzone> CercaBranoY(String anno) throws RemoteException {
-        return null;
+    public ArrayList<Canzone> CercaBranoY(String an) throws RemoteException {
+        try{
+            final String selezionaCanzoni =
+                    "SELECT * FROM canzone WHERE titolo='" + an + "';";
+
+            DatabaseHandler handler = new DatabaseHandler();
+            handler.connectDB();
+
+            ResultSet resultSet = handler.select(selezionaCanzoni);
+            ArrayList<Canzone> listaCanzoni = new ArrayList<>();
+            while(resultSet.next())
+            {
+                String titolo = resultSet.getString("titolo");
+                String autore = resultSet.getString("autore");
+                String anno = resultSet.getString("anno");
+                String album = resultSet.getString("album");
+                String durata = resultSet.getString("durata");
+                String genere = resultSet.getString("genere");
+                Canzone canzone = new Canzone(titolo, autore, anno, album);
+                listaCanzoni.add(canzone);
+            }
+            return listaCanzoni;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     @Override
     public ArrayList<Playlist> CercaPlaylist(String nomeU, String nomeP) throws RemoteException {
+
         return null;
     }
 
@@ -132,7 +257,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public ArrayList<Canzone> VisualizzaCanzoni() throws RemoteException {
         try{
             final String selezionaCanzoni =
-                    "SELECT * FROM canzone";
+                    "SELECT * FROM canzone;";
 
             DatabaseHandler handler = new DatabaseHandler();
             handler.connectDB();

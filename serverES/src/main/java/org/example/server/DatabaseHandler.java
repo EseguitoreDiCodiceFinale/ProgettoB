@@ -43,6 +43,7 @@ public class DatabaseHandler {
             CreateTableEmozione();
             CreateTableCanzone();
             CreateTableAssocia();
+            FillTableEmozione();
             System.out.println("Tabelle create");
         }
         disconnect();
@@ -92,6 +93,19 @@ public class DatabaseHandler {
         }
     }
 
+    public void FillTableEmozione() throws SQLException{
+        Statement statement = conn.createStatement();
+        statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Amazement', 'Feeling of wonder or happiness')");
+        statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Solemnity', 'Feeling of transcendence, inspiration. Thrills.')");
+        statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Tenderness', 'Sensuality, affect, feeling of love')");
+        statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Nostalgia', 'Dreamy, melancholic, sentimental feelings')");
+        statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Calmness', 'Relaxation, serenity, meditativeness')");
+        statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Power', 'Feeling strong, heroic, triumphant, energetic')");
+        statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Joy', 'Feels like dancing, bouncy feeling, animated, amused')");
+        statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Tension', 'Feeling Nervous, impatient, irritated')");
+        statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Sadness', 'ess Feeling Depressed, sorrowful')");
+    }
+
     public void CreateTableCanzone() throws SQLException{
         PreparedStatement statement = conn.prepareStatement(
                 "CREATE TABLE " + "canzone" + "( " +
@@ -109,7 +123,7 @@ public class DatabaseHandler {
     public void CreateTableAssocia() throws SQLException{
         PreparedStatement statement = conn.prepareStatement(
                 "CREATE TABLE " + "associa" + "( " +
-                        " idassocia VARCHAR(255), " +
+                        " idassocia INTEGER AUTO_INCREMENT, " +
                         " punteggio VARCHAR(255), " +
                         " note VARCHAR(255), " +
                         " idutente VARCHAR(255), " +
