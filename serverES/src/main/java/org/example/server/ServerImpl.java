@@ -125,7 +125,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public int CreaPlaylist(String nome, String titolo, String nomeU) throws RemoteException {
+    public int CreaPlaylist(String nome, String titolo, String nomeU, String autore) throws RemoteException {
         try{
         String tempAutore = "";
         final String inserisciPlaylist =
