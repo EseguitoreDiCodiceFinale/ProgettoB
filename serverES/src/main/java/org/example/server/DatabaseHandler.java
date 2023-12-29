@@ -67,7 +67,7 @@ public class DatabaseHandler {
         }
     }
 
-    public void CreateTablePlaylist() throws SQLException{
+   /* public void CreateTablePlaylist() throws SQLException{
         PreparedStatement statement = conn.prepareStatement(
                 "CREATE TABLE " + "playlist" + "( " +
                         " idutente VARCHAR(255), " +
@@ -78,6 +78,34 @@ public class DatabaseHandler {
                         " FOREIGN KEY (idutente) REFERENCES utente(userid)," +
                         " FOREIGN KEY (titolocanzone) REFERENCES utente(titolo)," +
                         " FOREIGN KEY (autorecanzone) REFERENCES canzone(autore)" +
+                        "ON UPDATE CASCADE ON DELETE CASCADE);"); {
+            statement.executeUpdate();
+        }
+    } */
+
+
+    public void CreateTablePlaylist() throws SQLException{
+        PreparedStatement statement = conn.prepareStatement(
+                "CREATE TABLE " + "playlist" + "( " +
+                        " idutente VARCHAR(255), " +
+                        " nome VARCHAR(255), " +
+                        " PRIMARY KEY ( idutente, nome )," +
+                        " FOREIGN KEY (idutente) REFERENCES utente(userid)," +
+                        "ON UPDATE CASCADE ON DELETE CASCADE);"); {
+            statement.executeUpdate();
+        }
+    }
+
+    public void CreateTablePlaylistCanzone() throws SQLException{
+        PreparedStatement statement = conn.prepareStatement(
+                "CREATE TABLE " + "playlistcanzone" + "( " +
+                        " nomeplaylist VARCHAR(255), " +
+                        " canzone VARCHAR(255), " +
+                        " autore VARCHAR(255) " +
+                        " PRIMARY KEY ( nomeplaylist, canzone, autore )," +
+                        " FOREIGN KEY (nomeplaylist) REFERENCES playlist(nome)," +
+                        " FOREIGN KEY (canzone) REFERENCES canzone(titolo)," +
+                        " FOREIGN KEY (autore) REFERENCES canzone(autore)," +
                         "ON UPDATE CASCADE ON DELETE CASCADE);"); {
             statement.executeUpdate();
         }

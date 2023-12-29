@@ -151,7 +151,29 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public int InserisciCanzone(String user, String nome, String canzone) throws RemoteException {
+    public int InserisciCanzone(String nome, String titolo, String nomeU, String autore) throws RemoteException {
+        try{
+            String tempAutore = "";
+            final String inserisciCanzone =
+                    "INSERT INTO playlist (idutente, nome, titolocanzone, autorecanzone) " +
+                            "VALUES('" +
+                            nomeU + "','" +
+                            nome + "','" +
+                            titolo + "','" +
+                            tempAutore + "');";
+            DatabaseHandler handler = new DatabaseHandler();
+            boolean esito = handler.insert(inserisciCanzone);
+            handler.disconnect();
+            if(esito)
+            {
+                return 1;
+            }else{
+                return 0;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
 
         return 0;
     }
