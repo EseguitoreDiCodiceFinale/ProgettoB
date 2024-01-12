@@ -174,12 +174,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             e.printStackTrace();
             return 0;
         }
-
-        return 0;
     }
 
     @Override
-    public int EliminaCanzone(String user, String nome, String canzone) throws RemoteException {
+    public int EliminaCanzone(String user, String nome, String canzone, String autore) throws RemoteException {
         return 0;
     }
 

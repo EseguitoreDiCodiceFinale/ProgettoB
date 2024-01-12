@@ -109,16 +109,16 @@ public class Client extends Thread{
         return 1;
     }
 
-    public synchronized int CreaPlaylist(String nomeP, String nomeC) throws  RemoteException{
-        return server.CreaPlaylist(nomeP, nomeC, UtenteAttuale);
+    public synchronized int CreaPlaylist(String nomeP, String nomeC, String autore) throws  RemoteException{
+        return server.CreaPlaylist(nomeP, nomeC, UtenteAttuale, autore);
     }
 
-    public synchronized int InserisciCanzone(String nomeC, String nomeP) throws  RemoteException{
-        return server.InserisciCanzone(UtenteAttuale, nomeC, nomeP);
+    public synchronized int InserisciCanzone(String nomeC, String nomeP, String autore) throws  RemoteException{
+        return server.InserisciCanzone(UtenteAttuale, nomeC, nomeP, autore);
     }
 
-    public synchronized int EliminaCanzone(String nomeC, String nomeP) throws  RemoteException{
-        return server.EliminaCanzone(UtenteAttuale, nomeC, nomeP);
+    public synchronized int EliminaCanzone(String nomeC, String nomeP, String autore) throws  RemoteException{
+        return server.EliminaCanzone(UtenteAttuale, nomeC, nomeP, autore);
     }
 
     public synchronized ArrayList<Canzone> CercaBranoT(String titolo) throws RemoteException{

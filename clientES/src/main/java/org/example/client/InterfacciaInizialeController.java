@@ -166,7 +166,12 @@ public class InterfacciaInizialeController {
     private ListView textareacanzoni;
     @FXML
     private Label label_elencoCanzoni;
-
+    @FXML
+    private TextField autorePC;
+    @FXML
+    private  TextField autorePI;
+    @FXML
+    private TextField autorePD;
 
 
     @FXML
@@ -410,7 +415,7 @@ public class InterfacciaInizialeController {
     void creaPlaylistCButton(ActionEvent event) throws RemoteException {
         //controlli client
         if(!(nomePlaylist.getText().equals("") || playlistCanzone.getText().equals(""))) {
-            switch (Client.getInstance().CreaPlaylist(nomePlaylist.getText(), playlistc.getText())) {
+            switch (Client.getInstance().CreaPlaylist(nomePlaylist.getText(), playlistc.getText(), autorePC.getText())) {
                 case 0:
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText(null);
@@ -447,7 +452,7 @@ public class InterfacciaInizialeController {
     void aggiungiCanzoneCButton(ActionEvent event) throws RemoteException{
         //controlli client
         if(!(nomePlaylistI.getText().equals("")|| playlistCanzoneI.getText().equals(""))){
-            switch (Client.getInstance().InserisciCanzone(playlistCanzoneI.getText(), nomePlaylistI.getText())){
+            switch (Client.getInstance().InserisciCanzone(playlistCanzoneI.getText(), nomePlaylistI.getText(), autorePI.getText())){
                 case 0:
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText(null);
@@ -489,7 +494,7 @@ public class InterfacciaInizialeController {
     void eliminaCanzoneCButton(ActionEvent event) throws RemoteException{
         //controlli client
         if(!(nomePlaylistIC.getText().equals("")|| playlistCanzoneIC.getText().equals(""))){
-            switch (Client.getInstance().EliminaCanzone(playlistCanzoneIC.getText(), nomePlaylistIC.getText())){
+            switch (Client.getInstance().EliminaCanzone(playlistCanzoneIC.getText(), nomePlaylistIC.getText(), autorePD.getText())){
                 case 0:
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText(null);

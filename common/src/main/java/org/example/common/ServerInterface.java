@@ -9,8 +9,8 @@ public interface ServerInterface extends Remote {
     boolean Login(String username, String password) throws RemoteException;
     boolean InserisciEmozione(Emozione e) throws RemoteException;
     int CreaPlaylist(String nome, String canzone, String nomeU, String autore) throws RemoteException;
-    int InserisciCanzone(String user, String nome, String canzone) throws RemoteException;
-    int EliminaCanzone(String user, String nome, String canzone) throws RemoteException;
+    int InserisciCanzone(String user, String nome, String canzone, String autore) throws RemoteException;
+    int EliminaCanzone(String user, String nome, String canzone, String autore) throws RemoteException;
     ArrayList<Canzone> CercaBranoT(String titolo) throws RemoteException;
     ArrayList<Canzone> CercaBranoA(String autore) throws RemoteException;
     ArrayList<Canzone> CercaBranoY(String anno) throws RemoteException;

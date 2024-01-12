@@ -8,8 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientES/src/main/java/org/example/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/clientES/src/main/java/org/example/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientES/src/main/java/org/example/client/InterfacciaInizialeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/clientES/src/main/java/org/example/client/InterfacciaInizialeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientES/src/main/resources/client/InterfacciaIniziale.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/clientES/src/main/resources/client/InterfacciaIniziale.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientES/src/main/resources/icon/Emotional song.png" beforeDir="false" afterPath="$PROJECT_DIR$/clientES/src/main/resources/icon/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/src/main/java/org/example/common/ServerInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/example/common/ServerInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/serverES/src/main/java/org/example/server/ServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverES/src/main/java/org/example/server/ServerImpl.java" afterDir="false" />
     </list>
