@@ -99,14 +99,14 @@ public class DatabaseHandler {
     public void CreateTablePlaylistCanzone() throws SQLException{
         PreparedStatement statement = conn.prepareStatement(
                 "CREATE TABLE " + "playlistcanzone" + "( " +
-                        " nomeplaylist VARCHAR(255), " +
-                        " canzone VARCHAR(255), " +
+                        " idplaylist INTEGER, " +
+                        " titolo VARCHAR(255), " +
                         " autore VARCHAR(255) " +
-                        " PRIMARY KEY ( nomeplaylist, canzone, autore )," +
-                        " FOREIGN KEY (nomeplaylist) REFERENCES playlist(nome)," +
+                        " PRIMARY KEY ( idplaylist, titolo, autore )," +
+                        " FOREIGN KEY (idplaylist) REFERENCES playlist(idplaylist)," +
                         " FOREIGN KEY (canzone) REFERENCES canzone(titolo)," +
                         " FOREIGN KEY (autore) REFERENCES canzone(autore)," +
-                        "ON UPDATE CASCADE ON DELETE CASCADE);"); {
+                        " ON UPDATE CASCADE ON DELETE CASCADE);"); {
             statement.executeUpdate();
         }
     }

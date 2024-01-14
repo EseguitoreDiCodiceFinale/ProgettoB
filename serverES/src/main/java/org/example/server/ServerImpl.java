@@ -127,15 +127,29 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public int CreaPlaylist(String nome, String titolo, String nomeU, String autore) throws RemoteException {
         try{
-        String tempAutore = "";
-        final String inserisciPlaylist =
-                "INSERT INTO playlist (idutente, nome, titolocanzone, autorecanzone) " +
-                        "VALUES('" +
-                        nomeU + "','" +
-                        nome + "','" +
-                        titolo + "','" +
-                        tempAutore + "');";
+            int idPlaylist;
             DatabaseHandler handler = new DatabaseHandler();
+            handler.connectDB();
+            ResultSet resultSet = handler.select("SELECT MAX(idplaylist) AS ultimo_valore FROM playlist");
+
+            if (resultSet.next()) {
+                idPlaylist = resultSet.getInt("ultimo_valore");
+            }
+            else {
+                idPlaylist = 1;
+            }
+
+            String tempAutore = "";
+            final String inserisciPlaylist =
+                    "INSERT INTO playlist (idplaylist, idutente, nome, titolocanzone, autorecanzone) " +
+                            "VALUES('" +
+                            idPlaylist + "','" +
+                            nomeU + "','" +
+                            nome + "','" +
+                            titolo + "','" +
+                            autore + "');";
+
+
             boolean esito = handler.insert(inserisciPlaylist);
             handler.disconnect();
             if(esito)
