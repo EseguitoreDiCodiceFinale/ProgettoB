@@ -72,7 +72,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
             DatabaseHandler handler = new DatabaseHandler();
             handler.connectDB();
-
+            //handler.disconnectDB(); ?
             ResultSet resultSet = handler.select(verificaLogin);
 
             if (!resultSet.next()) {
@@ -124,8 +124,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return false;
     }
 
-    @Override
-    public int CreaPlaylist(String nome, String titolo, String nomeU, String autore) throws RemoteException {
+
+   /* public int CreaPlaylist(String nome, String titolo, String nomeU, String autore) throws RemoteException {
         try{
             int idPlaylist;
             DatabaseHandler handler = new DatabaseHandler();
@@ -162,20 +162,73 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             e.printStackTrace();
             return 0;
         }
+    }*/
+
+    @Override
+    public int CreaPlaylist(String nome, String titolo, String nomeU, String autore) throws RemoteException {
+        try{
+            int idPlaylist;
+            DatabaseHandler handler = new DatabaseHandler();
+            handler.connectDB();
+            ResultSet resultSet = handler.select("SELECT MAX(idplaylist) AS ultimo_valore FROM playlist");
+
+            if (resultSet.next()) {
+                idPlaylist = resultSet.getInt("ultimo_valore");
+            }
+            else {
+                idPlaylist = 1;
+            }
+
+            final String inserisciPlaylist =
+                    "INSERT INTO playlist (idplaylist, nome, idutente) " +
+                            "VALUES('" +
+                            idPlaylist + "','" +
+                            nome + "','" +
+                            nomeU + "');";
+
+
+            final String inserisciCanzone =
+                    "INSERT INTO playlistcanzone (idplaylist, titolo, autore) " +
+                            "VALUES('" +
+                            idPlaylist + "','" +
+                            titolo + "','" +
+                            autore + "');";
+
+
+            boolean esito = handler.insert(inserisciPlaylist);
+            boolean esito2 = handler.insert(inserisciCanzone);
+
+            handler.disconnect();
+            if(esito && esito2)
+            {
+                return 1;
+            }else{
+                return 0;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     @Override
     public int InserisciCanzone(String nome, String titolo, String nomeU, String autore) throws RemoteException {
         try{
-            String tempAutore = "";
-            final String inserisciCanzone =
-                    "INSERT INTO playlist (idutente, nome, titolocanzone, autorecanzone) " +
-                            "VALUES('" +
-                            nomeU + "','" +
-                            nome + "','" +
-                            titolo + "','" +
-                            tempAutore + "');";
             DatabaseHandler handler = new DatabaseHandler();
+
+            final String idPlaylist =
+                    "SELECT idplaylist FROM playlist" +
+                            " WHERE nome='" + nome + "' AND idutente='" + nomeU + "'";
+
+            ResultSet resultSet = handler.select(idPlaylist);
+
+            final String inserisciCanzone =
+                    "INSERT INTO playlistcanzone (idplaylist, titolo, autore) " +
+                            "VALUES('" +
+                            resultSet.getString("idplaylist") + "','" +
+                            titolo + "','" +
+                            autore + "');";
+
             boolean esito = handler.insert(inserisciCanzone);
             handler.disconnect();
             if(esito)
@@ -326,4 +379,3 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return null;
     }
 }
-
