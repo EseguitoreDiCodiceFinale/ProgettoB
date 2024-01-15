@@ -52,6 +52,15 @@ public class InterfacciaInizialeController {
     private TextField nome;
 
     @FXML
+    private TextField eliminaAutorePlaylist;
+
+    @FXML
+    private TextField playlistAutore;
+
+    @FXML
+    private TextField playlistAutoreCanzone;
+
+    @FXML
     private TextField nomeUtente1;
 
     @FXML
@@ -155,6 +164,8 @@ public class InterfacciaInizialeController {
     @FXML
     private ChoiceBox choicebox_emozione;
     @FXML
+    private ChoiceBox<String> choiceboxRicerca;
+    @FXML
     private ChoiceBox choicebox_score;
     @FXML
     private TextField tf_note;
@@ -178,7 +189,6 @@ public class InterfacciaInizialeController {
     private Button visualizza;
     private Stage stage;
     private Scene scene;
-
 
 
     @FXML
