@@ -19,8 +19,6 @@ public class InterfacciaInizialeController {
     @FXML
     public Button btlogout;
     @FXML
-    private Pane mostracanzoni_pane;
-    @FXML
     public Button visualizzacanzoni;
     @FXML
     public Button visualizzaplaylist;
@@ -100,7 +98,8 @@ public class InterfacciaInizialeController {
 
     @FXML
     private Pane signin_pane;
-
+    @FXML
+    private Pane mostracanzoni_pane;
     @FXML
     private Pane signup_pane;
     @FXML
@@ -189,6 +188,23 @@ public class InterfacciaInizialeController {
     private Button visualizza;
     private Stage stage;
     private Scene scene;
+
+
+    @FXML
+    public void initialize() {
+        choiceboxRicerca.getItems().addAll("Titolo","Autore","Anno");
+        signin_pane.setVisible(false);
+        mostracanzoni_pane.setVisible(false);
+        signup_pane.setVisible(false);
+        emotion_pane.setVisible(false);
+        emotionV_pane.setVisible(false);
+        logocentrale.setVisible(true);
+        playlist_pane.setVisible(false);
+        playlistI_pane.setVisible(false);
+        visualizza_playlist_pane.setVisible(false);
+        eliminacanzone_pane.setVisible(false);
+
+    }
 
 
     @FXML
@@ -364,6 +380,7 @@ public class InterfacciaInizialeController {
                     alert.setContentText("Accesso Effettuato con successo");
                     alert.showAndWait();
                     signin_pane.setVisible(false);
+                    logocentrale.setVisible(false);
                     creaplaylist.setVisible(true);
                     inserisciemozioni.setVisible(true);
                     accedi.setVisible(false);
@@ -703,6 +720,7 @@ public class InterfacciaInizialeController {
         emotionV_pane.setVisible(false);
         playlist_pane.setVisible(true);
         playlistI_pane.setVisible(false);
+        logocentrale.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
         eliminacanzone_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
@@ -713,6 +731,7 @@ public class InterfacciaInizialeController {
         emotionV_pane.setVisible(false);
         playlist_pane.setVisible(false);
         playlistI_pane.setVisible(false);
+        logocentrale.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
         eliminacanzone_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
@@ -723,6 +742,7 @@ public class InterfacciaInizialeController {
         emotionV_pane.setVisible(false);
         playlist_pane.setVisible(false);
         playlistI_pane.setVisible(true);
+        logocentrale.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
         eliminacanzone_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
@@ -734,6 +754,7 @@ public class InterfacciaInizialeController {
         emotion_pane.setVisible(false);
         emotionV_pane.setVisible(false);
         playlist_pane.setVisible(false);
+        logocentrale.setVisible(false);
         playlistI_pane.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
@@ -746,6 +767,7 @@ public class InterfacciaInizialeController {
         signup_pane.setVisible(false);
         emotionV_pane.setVisible(false);
         emotion_pane.setVisible(false);
+        logocentrale.setVisible(false);
         playlist_pane.setVisible(false);
         playlistI_pane.setVisible(false);
         eliminacanzone_pane.setVisible(false);
