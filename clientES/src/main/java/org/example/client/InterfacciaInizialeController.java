@@ -1,4 +1,6 @@
 package org.example.client;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -193,6 +195,26 @@ public class InterfacciaInizialeController {
     @FXML
     public void initialize() {
         choiceboxRicerca.getItems().addAll("Titolo","Autore","Anno");
+        choiceboxRicerca.getSelectionModel().selectedIndexProperty().addListener((ObservableValue<? extends Number> ov, Number oldValue, Number newValue) -> {
+            String selectedItem = choiceboxRicerca.getItems().get(newValue.intValue());
+
+            switch (selectedItem) {
+                case "Titolo":
+                    //ricerca con titolo
+                    break;
+                case "Autore":
+                    //ricerca con autore
+                    break;
+                case "Anno":
+                    //ricerca con anno
+                    break;
+                default:
+                    // Gestire eventuali altri casi
+                    break;
+            }
+        });
+
+
         signin_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
         signup_pane.setVisible(false);
@@ -203,6 +225,7 @@ public class InterfacciaInizialeController {
         playlistI_pane.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
         eliminacanzone_pane.setVisible(false);
+
 
     }
 
