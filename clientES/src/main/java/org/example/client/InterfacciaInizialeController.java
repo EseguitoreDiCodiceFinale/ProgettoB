@@ -184,6 +184,8 @@ public class InterfacciaInizialeController {
     private  TextField autorePI;
     @FXML
     private TextField autorePD;
+    @FXML
+    private TextArea TextAreaVisualizzaPlaylist;
 
 
     @FXML
@@ -225,7 +227,13 @@ public class InterfacciaInizialeController {
         playlistI_pane.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
         eliminacanzone_pane.setVisible(false);
-
+        creaplaylist.setVisible(false);
+        aggiungibrano.setVisible(false);
+        eliminabrano.setVisible(false);
+        visualizza.setVisible(false);
+        inserisciemozioni.setVisible(false);
+        visualizzaplaylist.setVisible(false);
+        btlogout.setVisible(false);
 
     }
 
