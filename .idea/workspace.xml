@@ -49,7 +49,7 @@
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "19",
-    "last_opened_file_path": "C:/Program Files/javafx-sdk-19/lib",
+    "last_opened_file_path": "C:/Users/aless/Desktop/EmotionalSongsB-main",
     "onboarding.tips.debug.path": "D:/Progetto/ProgettoB/common/src/main/java/org/example/Main.java",
     "project.structure.last.edited": "Global Libraries",
     "project.structure.proportion": "0.15",
@@ -72,12 +72,11 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="InterfacciaApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="Server" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="org.example.InterfacciaApplication" />
-      <module name="clientES" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\aless\Desktop\javafx-sdk-21.0.1\lib&quot; --add-modules=javafx.base,javafx.controls,javafx.graphics,javafx.media" />
+      <option name="MAIN_CLASS_NAME" value="org.example.server.ServerMain" />
+      <module name="serverES" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

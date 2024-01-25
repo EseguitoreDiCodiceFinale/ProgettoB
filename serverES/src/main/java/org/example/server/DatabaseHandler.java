@@ -185,7 +185,7 @@ public class DatabaseHandler {
         conn.close();
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         String q = "select * from centro_vaccinale";
         ResultSet rs = null;
 
@@ -199,6 +199,6 @@ public class DatabaseHandler {
         } catch (SQLException e) {
             System.out.println("SQLException");
         }
-    }
+    }*/
 
 }

@@ -18,18 +18,24 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         super();
     }
     public void run(){
+       /* try{
+            DatabaseHandler dbh = new DatabaseHandler();
+            dbh.DBInitialization();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }*/
         try {
             Connessione();
         }catch (RemoteException e){
             System.out.println("Errore avvio del server");
+            e.printStackTrace();
         }
     }
 
     public void Connessione() throws RemoteException{
         ServerImpl server = new ServerImpl();
-        ServerInterface stub = (ServerInterface) UnicastRemoteObject.exportObject(server, SERVERPORT);
         Registry registro = LocateRegistry.createRegistry(REGISTRYPORT);
-        registro.rebind("ServerES", stub);
+        registro.rebind("ServerES", server);
         System.out.println("Server Ready");
     }
 
@@ -52,7 +58,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                             indirizzo[4] + "');";
 
             DatabaseHandler handler = new DatabaseHandler();
+            handler.connectDB();
             boolean esito = handler.insert(registraUtente);
+            System.out.println(esito);
             handler.disconnect();
             return esito;
 
@@ -77,8 +85,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
             if (!resultSet.next()) {
                 System.out.println("Utente non presente");
+                handler.disconnect();
                 return false;
             } else {
+                handler.disconnect();
                 return true;
             }
 
