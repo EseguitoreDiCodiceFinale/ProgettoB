@@ -1,6 +1,8 @@
 package org.example.common;
+import java.io.Serializable;
 import java.util.ArrayList;
-public class Playlist {
+public class Playlist implements Serializable {
+    private static final long serialVersionUID = 1;
     private String nomePlaylist;
     private ArrayList<Canzone> listaCanzoni;
     private String nomeUtente;

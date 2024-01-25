@@ -1,6 +1,9 @@
 package org.example.common;
 
-public class Canzone {
+import java.io.Serializable;
+
+public class Canzone implements Serializable {
+    private static final long serialVersionUID = 1;
     private String titolo;
     private String autore;
     private String anno;

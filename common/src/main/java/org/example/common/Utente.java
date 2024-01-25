@@ -1,6 +1,9 @@
 package org.example.common;
 
-public class Utente {
+import java.io.Serializable;
+
+public class Utente implements Serializable {
+    private static final long serialVersionUID = 1;
     private String username;
     private String nome;
     private String cognome;

@@ -1,6 +1,9 @@
 package org.example.common;
 
-public class Emozione {
+import java.io.Serializable;
+
+public class Emozione implements Serializable {
+    private static final long serialVersionUID = 1;
     private String categoria;
     private String punteggio;
     private String note;
