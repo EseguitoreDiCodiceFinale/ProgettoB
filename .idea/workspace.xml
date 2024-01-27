@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59a733cf-a8b6-4a44-a7a1-503883b471ec" name="Changes" comment="Start">
+    <list default="true" id="59a733cf-a8b6-4a44-a7a1-503883b471ec" name="Changes" comment="login">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverES/src/main/java/org/example/server/DatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverES/src/main/java/org/example/server/DatabaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverES/src/main/java/org/example/server/ServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverES/src/main/java/org/example/server/ServerImpl.java" afterDir="false" />
     </list>
     <list id="f5e382d2-7104-4578-a3b5-c977be57cfd1" name="Changes by simon" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,15 +42,18 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Server.executor": "Run",
+    "Maven.clientES [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "master",
     "jdk.selected.JAVA_MODULE": "19",
-    "last_opened_file_path": "C:/Users/aless/Desktop/EmotionalSongsB-main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/simon/Desktop/Projojo/postgresql-42.7.1.jar",
     "onboarding.tips.debug.path": "D:/Progetto/ProgettoB/common/src/main/java/org/example/Main.java",
-    "project.structure.last.edited": "Global Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "terminal"
@@ -92,6 +94,13 @@
       </method>
     </configuration>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-19.0.2-corretto-19.0.2-4caba194b151-48ba4555" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -117,7 +126,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701712792865</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="login">
+      <option name="closed" value="true" />
+      <created>1706370534580</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1706370534580</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -134,7 +151,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="FIX E DAI" />
     <MESSAGE value="Start" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start" />
+    <MESSAGE value="login" />
+    <option name="LAST_COMMIT_MESSAGE" value="login" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
