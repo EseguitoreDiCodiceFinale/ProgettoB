@@ -12,13 +12,15 @@ public class DatabaseHandler {
     private Connection conn;
 
 
-    public DatabaseHandler() throws SQLException { }
-
+    public DatabaseHandler() throws SQLException {
+        super();
+    }
+/*
     private void connectServerDB() throws SQLException {
         conn = DriverManager.getConnection(DBUrl, user, password);
         System.out.println("Connesso al database");
     }
-
+*/
     public Connection connectDB() throws SQLException {
         String dbUrl = DBUrl + DBName;
         conn = DriverManager.getConnection(dbUrl, user, password);
@@ -27,7 +29,7 @@ public class DatabaseHandler {
     }
 
     public void DBInitialization() throws SQLException {
-        connectServerDB();
+        connectDB();
         String createQuery = "SELECT 1 FROM pg_database WHERE datname = ?";
         PreparedStatement st = conn.prepareStatement(createQuery);
         st.setString(1, DBName);
@@ -186,7 +188,7 @@ public class DatabaseHandler {
     }
 
     /*public static void main(String[] args) {
-        String q = "select * from centro_vaccinale";
+        String q = "select * from ";
         ResultSet rs = null;
 
         try {
