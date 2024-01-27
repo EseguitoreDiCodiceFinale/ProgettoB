@@ -45,13 +45,6 @@ public class DatabaseHandler {
         return conn;
     }
     public void DBInitialization() throws SQLException, RemoteException {
-        CreateTableUtente();
-        CreateTablePlaylist();
-        CreateTableEmozione();
-        CreateTableCanzone();
-        CreateTableAssocia();
-        FillTableEmozione();/*
-        System.out.println("Tabelle create");
         String createQuery = "SELECT 1 FROM pg_database WHERE datname = ?";
         PreparedStatement st = conn.prepareStatement(createQuery);
         st.setString(1, DBName);
@@ -60,17 +53,18 @@ public class DatabaseHandler {
             createQuery = "CREATE DATABASE " + DBName;
             st = conn.prepareStatement(createQuery);
             st.executeUpdate();
-            disconnect();
-            connectDB();
+            //disconnect();
+            //connectDB();
             CreateTableUtente();
             CreateTablePlaylist();
             CreateTableEmozione();
             CreateTableCanzone();
             CreateTableAssocia();
             FillTableEmozione();
+            CreateTablePlaylistCanzone();
             System.out.println("Tabelle create");
         }
-        disconnect();*/
+        //disconnect();
     }
 
     public void CreateTableUtente() throws SQLException{
