@@ -1,6 +1,7 @@
 package org.example.server;
 
 import java.rmi.RemoteException;
+import java.sql.SQLException;
 
 public class ServerMain {
     public static void main(String[] args) {
@@ -11,6 +12,8 @@ public class ServerMain {
        /* }catch (SQLException e){
             System.out.println("Errore Database");
         }*/
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 }

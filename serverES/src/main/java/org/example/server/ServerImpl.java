@@ -6,6 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -17,13 +18,32 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public ServerImpl() throws RemoteException{
         super();
     }
-    public void run(){
-       /* try{
+    public void run() throws RemoteException, SQLException {
+        ServerImpl server= new ServerImpl();
+        Registry registro;
+        try{
+            registro = LocateRegistry.createRegistry(REGISTRYPORT);
+            registro.rebind("ServerES", server);
+        }catch (Exception e){
+            System.out.println("Errore avvio del server");
+            e.printStackTrace();
+        }
+        DatabaseHandler connection = new DatabaseHandler();
+        Connection dbconnection = connection.connectDB();
+        if (dbconnection != null) {
+            connection.DBInitialization();
+            System.out.println("Connessione al database effettuata con successo");
+        } else {
+            System.out.println("Connessione al database NON effettuata");
+        }
+        /*try{
             DatabaseHandler dbh = new DatabaseHandler();
             dbh.DBInitialization();
         }catch (SQLException e){
             e.printStackTrace();
-        }*/
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
         try {
             Connessione();
         }catch (RemoteException e){
@@ -37,6 +57,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         Registry registro = LocateRegistry.createRegistry(REGISTRYPORT);
         registro.rebind("ServerES", server);
         System.out.println("Server Ready");
+    }*/
     }
 
     @Override

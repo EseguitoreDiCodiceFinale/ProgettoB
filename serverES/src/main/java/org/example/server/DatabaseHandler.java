@@ -1,5 +1,6 @@
 package org.example.server;
 
+import java.rmi.RemoteException;
 import java.sql.*;
 
 public class DatabaseHandler {
@@ -7,10 +8,11 @@ public class DatabaseHandler {
 
     private final String DBUrl = "jdbc:postgresql://localhost:5432/";
     private final String DBName = "databaseEmotionalSongs";
-    private final String user = "username1";
+    private final String user = "postgres";
     private final String password = "password1";
-    private Connection conn;
 
+    private  static DatabaseHandler instance;
+    private Connection conn = null;
 
     public DatabaseHandler() throws SQLException {
         super();
@@ -21,15 +23,35 @@ public class DatabaseHandler {
         System.out.println("Connesso al database");
     }
 */
-    public Connection connectDB() throws SQLException {
+
+    public static DatabaseHandler getInstance() {
+        if (instance == null) {
+            synchronized (DatabaseHandler.class) {
+                if (instance == null) {
+                    try {
+                        instance = new DatabaseHandler();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return instance;
+    }
+    public Connection connectDB() throws SQLException, RemoteException {
         String dbUrl = DBUrl + DBName;
         conn = DriverManager.getConnection(dbUrl, user, password);
         System.out.println("Connesso al database");
         return conn;
     }
-
-    public void DBInitialization() throws SQLException {
-        connectDB();
+    public void DBInitialization() throws SQLException, RemoteException {
+        CreateTableUtente();
+        CreateTablePlaylist();
+        CreateTableEmozione();
+        CreateTableCanzone();
+        CreateTableAssocia();
+        FillTableEmozione();/*
+        System.out.println("Tabelle create");
         String createQuery = "SELECT 1 FROM pg_database WHERE datname = ?";
         PreparedStatement st = conn.prepareStatement(createQuery);
         st.setString(1, DBName);
@@ -48,7 +70,7 @@ public class DatabaseHandler {
             FillTableEmozione();
             System.out.println("Tabelle create");
         }
-        disconnect();
+        disconnect();*/
     }
 
     public void CreateTableUtente() throws SQLException{
