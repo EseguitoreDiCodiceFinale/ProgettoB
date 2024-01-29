@@ -211,7 +211,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             else {
                 idPlaylist = 1;
             }
-
             final String inserisciPlaylist =
                     "INSERT INTO playlist (idplaylist, nome, idutente) " +
                             "VALUES('" +
@@ -226,11 +225,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                             idPlaylist + "','" +
                             titolo + "','" +
                             autore + "');";
-
-
             boolean esito = handler.insert(inserisciPlaylist, dbconnection);
             boolean esito2 = handler.insert(inserisciCanzone, dbconnection);
-
             handler.disconnect(dbconnection);
             if(esito && esito2)
             {
@@ -356,9 +352,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 String titolo = resultSet.getString("titolo");
                 String autore = resultSet.getString("autore");
                 String anno = resultSet.getString("anno");
-                String album = resultSet.getString("album");
-                String durata = resultSet.getString("durata");
-                String genere = resultSet.getString("genere");
                 Canzone canzone = new Canzone(titolo, autore, anno);
                 listaCanzoni.add(canzone);
             }
@@ -390,7 +383,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 String titolo = resultSet.getString("titolo");
                 String autore = resultSet.getString("autore");
                 String anno = resultSet.getString("anno");
-               // String album = resultSet.getString("album");
+                // String album = resultSet.getString("album");
                 // String durata = resultSet.getString("durata");
                 // String genere = resultSet.getString("genere");
                 Canzone canzone = new Canzone(titolo, autore, anno);

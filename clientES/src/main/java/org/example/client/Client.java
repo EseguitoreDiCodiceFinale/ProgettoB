@@ -130,7 +130,7 @@ public class Client extends Thread{
     public synchronized ArrayList<Canzone> CercaBranoY(String anno) throws RemoteException{
         return server.CercaBranoY(anno);
     }
-    public synchronized ArrayList<Playlist> CercaPlaylist(String nomeP) throws RemoteException{
+    public synchronized ArrayList<Playlist> a(String nomeP) throws RemoteException{
         return server.CercaPlaylist(UtenteAttuale, nomeP);
     }
 
