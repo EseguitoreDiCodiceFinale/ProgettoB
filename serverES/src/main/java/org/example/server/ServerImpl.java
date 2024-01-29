@@ -301,7 +301,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 String album = resultSet.getString("album");
                 String durata = resultSet.getString("durata");
                 String genere = resultSet.getString("genere");
-                Canzone canzone = new Canzone(titolo, autore, anno, album);
+                Canzone canzone = new Canzone(titolo, autore, anno);
                 listaCanzoni.add(canzone);
             }
             return listaCanzoni;
@@ -330,7 +330,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 String album = resultSet.getString("album");
                 String durata = resultSet.getString("durata");
                 String genere = resultSet.getString("genere");
-                Canzone canzone = new Canzone(titolo, autore, anno, album);
+                Canzone canzone = new Canzone(titolo, autore, anno);
                 listaCanzoni.add(canzone);
             }
             return listaCanzoni;
@@ -359,7 +359,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 String album = resultSet.getString("album");
                 String durata = resultSet.getString("durata");
                 String genere = resultSet.getString("genere");
-                Canzone canzone = new Canzone(titolo, autore, anno, album);
+                Canzone canzone = new Canzone(titolo, autore, anno);
                 listaCanzoni.add(canzone);
             }
             return listaCanzoni;
@@ -378,7 +378,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public ArrayList<Canzone> VisualizzaCanzoni() throws RemoteException {
         try{
             final String selezionaCanzoni =
-                    "SELECT * FROM canzone;";
+                    "SELECT TITOLO, AuTORE, ANNO FROM canzone;";
 
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection=handler.connectDB();
@@ -390,10 +390,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 String titolo = resultSet.getString("titolo");
                 String autore = resultSet.getString("autore");
                 String anno = resultSet.getString("anno");
-                String album = resultSet.getString("album");
-                String durata = resultSet.getString("durata");
-                String genere = resultSet.getString("genere");
-                Canzone canzone = new Canzone(titolo, autore, anno, album);
+               // String album = resultSet.getString("album");
+                // String durata = resultSet.getString("durata");
+                // String genere = resultSet.getString("genere");
+                Canzone canzone = new Canzone(titolo, autore, anno);
                 listaCanzoni.add(canzone);
             }
             return listaCanzoni;

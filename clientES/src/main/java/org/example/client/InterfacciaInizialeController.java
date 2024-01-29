@@ -818,7 +818,7 @@ public class InterfacciaInizialeController {
         visualizza_playlist_pane.setVisible(false);
         logocentrale.setVisible(false);
 
-        Canzone canzone = new Canzone("", "","","");
+        //Canzone canzone = new Canzone("", "","");
         for(var item : Client.getInstance().VisualizzaCanzoni())
         {
             textareacanzoni.getItems().add(item);

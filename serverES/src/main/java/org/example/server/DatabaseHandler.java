@@ -1,5 +1,9 @@
 package org.example.server;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.*;
 import java.util.logging.Handler;
@@ -37,6 +41,7 @@ public class DatabaseHandler {
         String dbUrl = DBUrl + DBName;
         Connection conn = DriverManager.getConnection(dbUrl, user, password);
         fillTableEmozione(conn);
+        //fillTableCanzone(conn);
         System.out.println("Connesso al database");
         return conn;
     }
@@ -76,15 +81,9 @@ public class DatabaseHandler {
         }
     }
 
-    public  void fillTableCanzone(Connection conn) throws SQLException{
-        final String isEmpty="SELECT * FROM canzone";
-        DatabaseHandler data =  DatabaseHandler.getInstance();
-        ResultSet res = data.select(isEmpty, conn);
-        if(!res.next()){
-            //inserire canzoni
-        }
-    }
+    public  void fillTableCanzone(Connection conn, String fileName) throws SQLException {
 
+    }
     /*
     public void DBInitialization() throws SQLException, RemoteException {
         String createQuery = "SELECT 1 FROM pg_database WHERE datname = ?";
@@ -230,4 +229,4 @@ public class DatabaseHandler {
         }
     }*/
 
-}
+    }
