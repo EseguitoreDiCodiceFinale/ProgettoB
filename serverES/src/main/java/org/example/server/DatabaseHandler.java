@@ -2,6 +2,7 @@ package org.example.server;
 
 import java.rmi.RemoteException;
 import java.sql.*;
+import java.util.logging.Handler;
 
 public class DatabaseHandler {
 
@@ -12,17 +13,11 @@ public class DatabaseHandler {
     private final String password = "password1";
 
     private  static DatabaseHandler instance;
-    private Connection conn = null;
+    //private Connection conn;
 
     public DatabaseHandler() throws SQLException {
         super();
     }
-/*
-    private void connectServerDB() throws SQLException {
-        conn = DriverManager.getConnection(DBUrl, user, password);
-        System.out.println("Connesso al database");
-    }
-*/
 
     public static DatabaseHandler getInstance() {
         if (instance == null) {
@@ -40,10 +35,57 @@ public class DatabaseHandler {
     }
     public Connection connectDB() throws SQLException, RemoteException {
         String dbUrl = DBUrl + DBName;
-        conn = DriverManager.getConnection(dbUrl, user, password);
+        Connection conn = DriverManager.getConnection(dbUrl, user, password);
+        fillTableEmozione(conn);
         System.out.println("Connesso al database");
         return conn;
     }
+
+    public boolean insert (String query, Connection conn) throws SQLException
+    {
+        Statement statement = conn.createStatement();
+        statement.executeUpdate(query);
+        return true;
+    }
+
+    public ResultSet select (String query, Connection conn) throws SQLException
+    {
+        Statement statement = conn.createStatement();
+        return statement.executeQuery(query);
+    }
+
+    public void disconnect(Connection conn) throws SQLException {
+        conn.close();
+    }
+
+    public void fillTableEmozione(Connection conn) throws SQLException{
+        final String isEmpty="SELECT * FROM emozione";
+        DatabaseHandler data =  DatabaseHandler.getInstance();
+        ResultSet res = data.select(isEmpty, conn);
+        if(!res.next()) {
+            Statement statement = conn.createStatement();
+            statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Amazement', 'Feeling of wonder or happiness')");
+            statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Solemnity', 'Feeling of transcendence, inspiration. Thrills.')");
+            statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Tenderness', 'Sensuality, affect, feeling of love')");
+            statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Nostalgia', 'Dreamy, melancholic, sentimental feelings')");
+            statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Calmness', 'Relaxation, serenity, meditativeness')");
+            statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Power', 'Feeling strong, heroic, triumphant, energetic')");
+            statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Joy', 'Feels like dancing, bouncy feeling, animated, amused')");
+            statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Tension', 'Feeling Nervous, impatient, irritated')");
+            statement.executeUpdate("INSERT INTO emozione " + "VALUES ('Sadness', 'ess Feeling Depressed, sorrowful')");
+        }
+    }
+
+    public  void fillTableCanzone(Connection conn) throws SQLException{
+        final String isEmpty="SELECT * FROM canzone";
+        DatabaseHandler data =  DatabaseHandler.getInstance();
+        ResultSet res = data.select(isEmpty, conn);
+        if(!res.next()){
+            //inserire canzoni
+        }
+    }
+
+    /*
     public void DBInitialization() throws SQLException, RemoteException {
         String createQuery = "SELECT 1 FROM pg_database WHERE datname = ?";
         PreparedStatement st = conn.prepareStatement(createQuery);
@@ -84,22 +126,6 @@ public class DatabaseHandler {
             statement.executeUpdate();
         }
     }
-
-   /* public void CreateTablePlaylist() throws SQLException{
-        PreparedStatement statement = conn.prepareStatement(
-                "CREATE TABLE " + "playlist" + "( " +
-                        " idutente VARCHAR(255), " +
-                        " nome VARCHAR(255), " +
-                        " titolocanzone VARCHAR(255), " +
-                        " autorecanzone VARCHAR(255), " +
-                        " PRIMARY KEY ( idutente, nome )," +
-                        " FOREIGN KEY (idutente) REFERENCES utente(userid)," +
-                        " FOREIGN KEY (titolocanzone) REFERENCES utente(titolo)," +
-                        " FOREIGN KEY (autorecanzone) REFERENCES canzone(autore)" +
-                        "ON UPDATE CASCADE ON DELETE CASCADE);"); {
-            statement.executeUpdate();
-        }
-    } */
 
 
     public void CreateTablePlaylist() throws SQLException{
@@ -184,24 +210,9 @@ public class DatabaseHandler {
                         "ON UPDATE CASCADE ON DELETE CASCADE);"); {
             statement.executeUpdate();
         }
-    }
+    } */
 
-    public boolean insert (String query) throws SQLException
-    {
-        Statement statement = conn.createStatement();
-        statement.executeUpdate(query);
-        return true;
-    }
 
-    public ResultSet select (String query) throws SQLException
-    {
-        Statement statement = conn.createStatement();
-        return statement.executeQuery(query);
-    }
-
-    public void disconnect() throws SQLException {
-        conn.close();
-    }
 
     /*public static void main(String[] args) {
         String q = "select * from ";

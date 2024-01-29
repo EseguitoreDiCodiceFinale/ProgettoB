@@ -10,11 +10,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Handler;
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     private final short REGISTRYPORT = 1099;
     private final short SERVERPORT= 1099;
+    public Connection dbconnection;
     public ServerImpl() throws RemoteException{
         super();
     }
@@ -29,9 +31,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             e.printStackTrace();
         }
         DatabaseHandler connection = new DatabaseHandler();
-        Connection dbconnection = connection.connectDB();
+        dbconnection = connection.connectDB();
         if (dbconnection != null) {
-            connection.DBInitialization();
+          //  connection.DBInitialization();
             System.out.println("Connessione al database effettuata con successo");
         } else {
             System.out.println("Connessione al database NON effettuata");
@@ -78,11 +80,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                             indirizzo[3] + "','" +
                             indirizzo[4] + "');";
 
-            DatabaseHandler handler = new DatabaseHandler();
-            handler.connectDB();
-            boolean esito = handler.insert(registraUtente);
+            DatabaseHandler handler = DatabaseHandler.getInstance();
+            dbconnection= handler.connectDB();
+            boolean esito = handler.insert(registraUtente, dbconnection);
             System.out.println(esito);
-            handler.disconnect();
+            handler.disconnect(dbconnection);
             return esito;
 
         }catch (SQLException e)
@@ -99,17 +101,17 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                     "SELECT userid, password FROM utente" +
                             " WHERE userid='" + username + "' AND password='" + password + "'";
 
-            DatabaseHandler handler = new DatabaseHandler();
-            handler.connectDB();
+            DatabaseHandler handler = DatabaseHandler.getInstance();
+            dbconnection = handler.connectDB();
             //handler.disconnectDB(); ?
-            ResultSet resultSet = handler.select(verificaLogin);
+            ResultSet resultSet = handler.select(verificaLogin, dbconnection);
 
             if (!resultSet.next()) {
                 System.out.println("Utente non presente");
-                handler.disconnect();
+                handler.disconnect(dbconnection);
                 return false;
             } else {
-                handler.disconnect();
+                handler.disconnect(dbconnection);
                 return true;
             }
 
@@ -123,9 +125,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public boolean InserisciEmozione(Emozione e) throws RemoteException {
         try{
             int idAssocia;
-            DatabaseHandler handler = new DatabaseHandler();
-            handler.connectDB();
-            ResultSet resultSet = handler.select("SELECT MAX(idassocia) AS ultimo_valore FROM associa");
+            DatabaseHandler handler = DatabaseHandler.getInstance();
+            dbconnection= handler.connectDB();
+            ResultSet resultSet = handler.select("SELECT MAX(idassocia) AS ultimo_valore FROM associa", dbconnection);
 
             if (resultSet.next()) {
                 idAssocia = resultSet.getInt("ultimo_valore");
@@ -145,8 +147,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                             //e.getAutore() + "','" +
                             e.getCategoria() + "');";
 
-            boolean esito = handler.insert(inserisciAssocia);
-            handler.disconnect();
+            boolean esito = handler.insert(inserisciAssocia, dbconnection);
+            handler.disconnect(dbconnection);
         }catch (SQLException ex)
         {
             ex.printStackTrace();
@@ -199,9 +201,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public int CreaPlaylist(String nome, String titolo, String nomeU, String autore) throws RemoteException {
         try{
             int idPlaylist;
-            DatabaseHandler handler = new DatabaseHandler();
-            handler.connectDB();
-            ResultSet resultSet = handler.select("SELECT MAX(idplaylist) AS ultimo_valore FROM playlist");
+            DatabaseHandler handler = DatabaseHandler.getInstance();
+            dbconnection= handler.connectDB();
+            ResultSet resultSet = handler.select("SELECT MAX(idplaylist) AS ultimo_valore FROM playlist", dbconnection);
 
             if (resultSet.next()) {
                 idPlaylist = resultSet.getInt("ultimo_valore");
@@ -226,10 +228,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                             autore + "');";
 
 
-            boolean esito = handler.insert(inserisciPlaylist);
-            boolean esito2 = handler.insert(inserisciCanzone);
+            boolean esito = handler.insert(inserisciPlaylist, dbconnection);
+            boolean esito2 = handler.insert(inserisciCanzone, dbconnection);
 
-            handler.disconnect();
+            handler.disconnect(dbconnection);
             if(esito && esito2)
             {
                 return 1;
@@ -245,13 +247,14 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public int InserisciCanzone(String nome, String titolo, String nomeU, String autore) throws RemoteException {
         try{
-            DatabaseHandler handler = new DatabaseHandler();
+            DatabaseHandler handler = DatabaseHandler.getInstance();
+            dbconnection= handler.connectDB();
 
             final String idPlaylist =
                     "SELECT idplaylist FROM playlist" +
                             " WHERE nome='" + nome + "' AND idutente='" + nomeU + "'";
 
-            ResultSet resultSet = handler.select(idPlaylist);
+            ResultSet resultSet = handler.select(idPlaylist, dbconnection);
 
             final String inserisciCanzone =
                     "INSERT INTO playlistcanzone (idplaylist, titolo, autore) " +
@@ -260,8 +263,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                             titolo + "','" +
                             autore + "');";
 
-            boolean esito = handler.insert(inserisciCanzone);
-            handler.disconnect();
+            boolean esito = handler.insert(inserisciCanzone, dbconnection);
+            handler.disconnect(dbconnection);
             if(esito)
             {
                 return 1;
@@ -285,10 +288,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             final String selezionaCanzoni =
                     "SELECT * FROM canzone WHERE titolo='" + ti + "';";
 
-            DatabaseHandler handler = new DatabaseHandler();
-            handler.connectDB();
+            DatabaseHandler handler = DatabaseHandler.getInstance();
+            dbconnection= handler.connectDB();
 
-            ResultSet resultSet = handler.select(selezionaCanzoni);
+            ResultSet resultSet = handler.select(selezionaCanzoni, dbconnection);
             ArrayList<Canzone> listaCanzoni = new ArrayList<>();
             while(resultSet.next())
             {
@@ -314,10 +317,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             final String selezionaCanzoni =
                     "SELECT * FROM canzone WHERE titolo='" + au + "';";
 
-            DatabaseHandler handler = new DatabaseHandler();
-            handler.connectDB();
+            DatabaseHandler handler = DatabaseHandler.getInstance();
+            dbconnection=handler.connectDB();
 
-            ResultSet resultSet = handler.select(selezionaCanzoni);
+            ResultSet resultSet = handler.select(selezionaCanzoni, dbconnection);
             ArrayList<Canzone> listaCanzoni = new ArrayList<>();
             while(resultSet.next())
             {
@@ -343,10 +346,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             final String selezionaCanzoni =
                     "SELECT * FROM canzone WHERE titolo='" + an + "';";
 
-            DatabaseHandler handler = new DatabaseHandler();
-            handler.connectDB();
+            DatabaseHandler handler = DatabaseHandler.getInstance();
+            dbconnection=handler.connectDB();
 
-            ResultSet resultSet = handler.select(selezionaCanzoni);
+            ResultSet resultSet = handler.select(selezionaCanzoni, dbconnection);
             ArrayList<Canzone> listaCanzoni = new ArrayList<>();
             while(resultSet.next())
             {
@@ -377,10 +380,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             final String selezionaCanzoni =
                     "SELECT * FROM canzone;";
 
-            DatabaseHandler handler = new DatabaseHandler();
-            handler.connectDB();
+            DatabaseHandler handler = DatabaseHandler.getInstance();
+            dbconnection=handler.connectDB();
 
-            ResultSet resultSet = handler.select(selezionaCanzoni);
+            ResultSet resultSet = handler.select(selezionaCanzoni, dbconnection);
             ArrayList<Canzone> listaCanzoni = new ArrayList<>();
             while(resultSet.next())
             {
