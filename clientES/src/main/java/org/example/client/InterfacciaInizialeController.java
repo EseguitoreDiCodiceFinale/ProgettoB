@@ -165,11 +165,11 @@ public class InterfacciaInizialeController {
     @FXML
     private TextField emozioneAutoreInserire;
     @FXML
-    private ChoiceBox choicebox_emozione;
+    private ChoiceBox<String> choicebox_emozione;
     @FXML
     private ChoiceBox<String> choiceboxRicerca;
     @FXML
-    private ChoiceBox choicebox_score;
+    private ChoiceBox<String> choicebox_score;
     @FXML
     private TextField tf_note;
     @FXML
@@ -199,6 +199,10 @@ public class InterfacciaInizialeController {
     @FXML
     public void initialize() {
         choiceboxRicerca.getItems().addAll("Titolo","Autore","Anno");
+        choicebox_emozione.getItems().addAll("Stupore","Calma","Gioia","Nostalgia","Enegia","Tristezza","Solennità","Tenerezza","Tensione");
+        choicebox_score.getItems().addAll("1","2","3","4","5");
+
+
         //Ricerca che si avvia scegliendo l'opzione dalla choicebox
         /*choiceboxRicerca.getSelectionModel().selectedIndexProperty().addListener((ObservableValue<? extends Number> ov, Number oldValue, Number newValue) -> {
             String selectedItem = choiceboxRicerca.getItems().get(newValue.intValue());
