@@ -337,9 +337,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 String titolo = resultSet.getString("titolo");
                 String autore = resultSet.getString("autore");
                 String anno = resultSet.getString("anno");
-                String album = resultSet.getString("album");
-                String durata = resultSet.getString("durata");
-                String genere = resultSet.getString("genere");
+                //String album = resultSet.getString("album");
+                //String durata = resultSet.getString("durata");
+                //String genere = resultSet.getString("genere");
                 Canzone canzone = new Canzone(titolo, autore, anno);
                 listaCanzoni.add(canzone);
             }
@@ -366,9 +366,9 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 String titolo = resultSet.getString("titolo");
                 String autore = resultSet.getString("autore");
                 String anno = resultSet.getString("anno");
-                String album = resultSet.getString("album");
-                String durata = resultSet.getString("durata");
-                String genere = resultSet.getString("genere");
+                //String album = resultSet.getString("album");
+                //String durata = resultSet.getString("durata");
+                //String genere = resultSet.getString("genere");
                 Canzone canzone = new Canzone(titolo, autore, anno);
                 listaCanzoni.add(canzone);
             }
