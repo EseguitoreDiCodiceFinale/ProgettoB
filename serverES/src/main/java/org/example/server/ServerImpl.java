@@ -255,14 +255,14 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public int InserisciCanzone(String nome, String titolo, String nomeU, String autore) throws RemoteException {
+    public int InserisciCanzone(String nomeU, String nome, String titolo, String autore) throws RemoteException {
         try{
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection= handler.connectDB();
 
             final String idPlaylist =
                     "SELECT idplaylist FROM playlist LEFT JOIN utente ON playlist.idutente=utente.userid" +
-                            " WHERE nome='" + nome + "' AND idutente='" + nomeU + "'";
+                            " WHERE playlist.nome='" + nome + "' AND playlist.idutente='" + nomeU + "'";
 
             ResultSet resultSet = handler.select(idPlaylist, dbconnection);
 
