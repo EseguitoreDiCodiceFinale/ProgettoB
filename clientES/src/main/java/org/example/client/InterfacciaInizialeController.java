@@ -159,9 +159,11 @@ public class InterfacciaInizialeController {
     @FXML
     private TextField emozioneCanzone;
     @FXML
+    private TextField emozioneAutore;
+    @FXML
     private TextField emozioneNomeUtente;
     @FXML
-    private TextField emozioneAutore;
+    private TextField emozioneAutoreInserire;
     @FXML
     private ChoiceBox choicebox_emozione;
     @FXML
@@ -231,7 +233,7 @@ public class InterfacciaInizialeController {
 
 
 
-        signin_pane.setVisible(false);
+        /*signin_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
         signup_pane.setVisible(false);
         emotion_pane.setVisible(false);
@@ -248,7 +250,7 @@ public class InterfacciaInizialeController {
         inserisciemozioni.setVisible(false);
         visualizzaplaylist.setVisible(false);
         btlogout.setVisible(false);
-
+        */
     }
 
 
