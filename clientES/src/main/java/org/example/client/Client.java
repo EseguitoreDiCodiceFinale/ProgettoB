@@ -114,11 +114,11 @@ public class Client extends Thread{
     }
 
     public synchronized int InserisciCanzone(String nomeC, String nomeP, String autore) throws  RemoteException{
-        return server.InserisciCanzone(UtenteAttuale, nomeC, nomeP, autore);
+        return server.InserisciCanzone(UtenteAttuale, nomeP, nomeC, autore);
     }
 
     public synchronized int EliminaCanzone(String nomeC, String nomeP, String autore) throws  RemoteException{
-        return server.EliminaCanzone(UtenteAttuale, nomeC, nomeP, autore);
+        return server.EliminaCanzone(UtenteAttuale, nomeP, nomeC, autore);
     }
 
     public synchronized ArrayList<Canzone> CercaBranoT(String titolo) throws RemoteException{
