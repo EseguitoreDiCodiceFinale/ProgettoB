@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="526.0" minWidth="825.0" prefHeight="526.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.client.InterfacciaInizialeController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="526.0" minWidth="825.0" prefHeight="526.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.client.InterfacciaInizialeController">
    <children>
       <Button fx:id="btlogout" layoutX="1.0" layoutY="434.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="45.0" prefWidth="261.0" text="Logout" textAlignment="CENTER">
          <font>
@@ -137,7 +137,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="visualizzaplaylist" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="389.0" mnemonicParsing="false" onAction="#visualizzaPlaylistButton" prefHeight="45.0" prefWidth="261.0" text="Visualizza Playlist">
+      <Button fx:id="visualizzaplaylist" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="389.0" mnemonicParsing="false" onAction="#visualizzaPlaylistButton" prefHeight="45.0" prefWidth="261.0" text="Cerca Playlist">
          <font>
             <Font size="15.0" />
          </font>

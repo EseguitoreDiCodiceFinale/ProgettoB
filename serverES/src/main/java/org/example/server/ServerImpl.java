@@ -261,10 +261,25 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             dbconnection= handler.connectDB();
 
             final String idPlaylist =
-                    "SELECT idplaylist FROM playlist" +
+                    "SELECT idplaylist FROM playlist LEFT JOIN utente ON playlist.idutente=utente.userid" +
                             " WHERE nome='" + nome + "' AND idutente='" + nomeU + "'";
 
             ResultSet resultSet = handler.select(idPlaylist, dbconnection);
+
+            if(!resultSet.next())
+            {
+                return 1;
+            }
+
+            final String verificaCanzone =
+                    "SELECT * FROM canzone" +
+                            " WHERE titolo='" + titolo + "' AND autore='" + autore + "'";
+
+            ResultSet resultSetCanzone = handler.select(verificaCanzone, dbconnection);
+            if (!resultSetCanzone.next())
+            {
+                return 2;
+            }
 
             final String inserisciCanzone =
                     "INSERT INTO playlistcanzone (idplaylist, titolo, autore) " +
@@ -277,13 +292,13 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             handler.disconnect(dbconnection);
             if(esito)
             {
-                return 1;
-            }else{
                 return 0;
+            }else{
+                return 3;
             }
         }catch (SQLException e) {
             e.printStackTrace();
-            return 0;
+            return 3;
         }
     }
 
