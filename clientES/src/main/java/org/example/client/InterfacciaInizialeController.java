@@ -197,7 +197,8 @@ public class InterfacciaInizialeController {
     @FXML
     public void initialize() {
         choiceboxRicerca.getItems().addAll("Titolo","Autore","Anno");
-        choiceboxRicerca.getSelectionModel().selectedIndexProperty().addListener((ObservableValue<? extends Number> ov, Number oldValue, Number newValue) -> {
+        //Ricerca che si avvia scegliendo l'opzione dalla choicebox
+        /*choiceboxRicerca.getSelectionModel().selectedIndexProperty().addListener((ObservableValue<? extends Number> ov, Number oldValue, Number newValue) -> {
             String selectedItem = choiceboxRicerca.getItems().get(newValue.intValue());
 
             switch (selectedItem) {
@@ -214,7 +215,20 @@ public class InterfacciaInizialeController {
                     // Gestire eventuali altri casi
                     break;
             }
+        });*/
+        titolor.setOnKeyPressed(event -> {
+            if (event.getCode().toString().equals("ENTER")) {
+                String searchTerm = titolor.getText();
+                //qui dentro va inserita l'operazione che si vuole fare quando si preve invio dentro la textbox
+                //quello sotto è un allert che verficare il funzionamento del tasto invio
+                /*Alert sesso = new Alert(Alert.AlertType.INFORMATION);
+                sesso.setTitle("Errore");
+                sesso.setHeaderText(null);
+                sesso.setContentText("Premo invio e funziona lol");
+                sesso.showAndWait();*/
+            }
         });
+
 
 
         signin_pane.setVisible(false);
