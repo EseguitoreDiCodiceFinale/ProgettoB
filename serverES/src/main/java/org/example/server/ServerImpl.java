@@ -26,6 +26,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         try{
             registro = LocateRegistry.createRegistry(REGISTRYPORT);
             registro.rebind("ServerES", server);
+            System.out.println("Connessione al server riuscita");
         }catch (Exception e){
             System.out.println("Errore avvio del server");
             e.printStackTrace();
@@ -211,7 +212,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             ResultSet resultSetCanzone = handler.select(verificaCanzone, dbconnection);
             if (!resultSetCanzone.next())
             {
-                return 1;
+                return 2;
             }
             if (resultSet.next())
             {
@@ -241,11 +242,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             {
                 return 0;
             }else{
-                return 2;
+                return 1;
             }
         }catch (SQLException e) {
             e.printStackTrace();
-            return 2;
+            return 1;
         }
     }
 

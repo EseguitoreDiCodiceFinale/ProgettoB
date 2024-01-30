@@ -473,11 +473,12 @@ public class InterfacciaInizialeController {
     void creaPlaylistCButton(ActionEvent event) throws RemoteException {
         //controlli client
         if(!(nomePlaylist.getText().equals("") || playlistCanzone.getText().equals(""))) {
-            switch (Client.getInstance().CreaPlaylist(nomePlaylist.getText(), playlistc.getText(), autorePC.getText())) {
+            switch (Client.getInstance().CreaPlaylist(nomePlaylist.getText(), playlistCanzone.getText(), autorePC.getText())) {
                 case 0:
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("");
                     alert.setHeaderText(null);
-                    alert.setTitle("La playlist è stata creata con successo");
+                    alert.setContentText("Playlist creata con successo");
                     playlist_pane.setVisible(false);
                     alert.showAndWait();
                     break;
