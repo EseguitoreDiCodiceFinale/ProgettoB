@@ -221,19 +221,149 @@ public class InterfacciaInizialeController {
         titolor.setOnKeyPressed(event -> {
             if (event.getCode().toString().equals("ENTER")) {
                 String searchTerm = titolor.getText();
-                //qui dentro va inserita l'operazione che si vuole fare quando si preve invio dentro la textbox
-                //quello sotto è un allert che verficare il funzionamento del tasto invio
-                /*Alert sesso = new Alert(Alert.AlertType.INFORMATION);
-                sesso.setTitle("Errore");
-                sesso.setHeaderText(null);
-                sesso.setContentText("Premo invio e funziona lol");
-                sesso.showAndWait();*/
+                String selectedItem = choiceboxRicerca.getValue();
+                try {
+                switch (selectedItem){
+                    case "Titolo":
+                            ArrayList<Canzone> outputT = Client.getInstance().CercaBranoT(searchTerm);
+                            if (outputT.size() == 0) {
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setTitle("Risultato ricerca:");
+                                alert.setHeaderText(null);
+                                alert.setContentText("Il titolo non è stato trovato");
+                                alert.showAndWait();
+                            } else {
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                                alert.setTitle("Ricerca per titolo");
+                                alert.setHeaderText(null);
+                                for(var item : outputT) {
+                                    alert.setContentText(alert.getContentText().concat("\n" + item.toString()));
+                                }
+                                alert.showAndWait();
+                            }
+                            break;
+                    case "Autore":
+                        ArrayList<Canzone> outputA = Client.getInstance().CercaBranoA(searchTerm);
+                        if (outputA.size() == 0) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Risultato ricerca:");
+                            alert.setHeaderText(null);
+                            alert.setContentText("l'autore non è stato trovato");
+                            alert.showAndWait();
+                        } else {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Ricerca per Autore");
+                            alert.setHeaderText(null);
+                            for(var item : outputA)
+                            {
+                                alert.setContentText(alert.getContentText().concat("\n" + item.toString()));
+                            }
+                            alert.showAndWait();
+                        }
+                            break;
+                    case "Anno":
+                        ArrayList<Canzone> outputY = Client.getInstance().CercaBranoY(searchTerm);
+                        if (outputY.size() == 0) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Risultato ricerca:");
+                            alert.setHeaderText(null);
+                            alert.setContentText("l'anno non è stato trovato");
+                            alert.showAndWait();
+                        } else {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Ricerca per Anno");
+                            alert.setHeaderText(null);
+                            for(var item : outputY)
+                            {
+                                alert.setContentText(alert.getContentText().concat("\n" + item.toString()));
+                            }
+                            alert.showAndWait();
+                        }
+                            break;
+                    default:
+                        Alert alertr = new Alert(Alert.AlertType.INFORMATION);
+                        alertr.setHeaderText("Errore");
+                        alertr.setContentText("Seleziona tipo di ricerca");
+                        alertr.showAndWait();
+                }
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
+                }
+            });
+        /*@FXML
+        void ricercaTitoloButton(ActionEvent event) {
+            String input = titolor.getText();
+            try {
+                ArrayList<Canzone> output = Client.getInstance().CercaBranoT(input);
+                if (output.size() == 0) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Risultato ricerca:");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Il titolo non è stato trovato");
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ricerca per titolo");
+                    alert.setHeaderText(null);
+                    for(var item : output)
+                    {
+                        alert.setContentText(alert.getContentText().concat("\n" + item.toString()));
+                    }
+                    alert.showAndWait();
+                }
             }
-        });
-
-
-
-        /*signin_pane.setVisible(false);
+            catch(Exception e){ e.printStackTrace();}
+        }
+        @FXML
+        void ricercaAutoreButton(ActionEvent event) {
+            String input = titolor.getText();
+            try {
+                ArrayList<Canzone> output = Client.getInstance().CercaBranoA(input);
+                if (output.size() == 0) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Risultato ricerca:");
+                    alert.setHeaderText(null);
+                    alert.setContentText("l'autore non è stato trovato");
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ricerca per Autore");
+                    alert.setHeaderText(null);
+                    for(var item : output)
+                    {
+                        alert.setContentText(alert.getContentText().concat("\n" + item.toString()));
+                    }
+                    alert.showAndWait();
+                }
+            }
+            catch(Exception e){ e.printStackTrace();}
+        }
+        @FXML
+        void ricercaAnnoButton(ActionEvent event) {
+            String input = titolor.getText();
+            try {
+                ArrayList<Canzone> output = Client.getInstance().CercaBranoY(input);
+                if (output.size() == 0) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Risultato ricerca:");
+                    alert.setHeaderText(null);
+                    alert.setContentText("l'anno non è stato trovato");
+                    alert.showAndWait();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ricerca per Anno");
+                    alert.setHeaderText(null);
+                    for(var item : output)
+                    {
+                        alert.setContentText(alert.getContentText().concat("\n" + item.toString()));
+                    }
+                    alert.showAndWait();
+                }
+            }
+            catch(Exception e){ e.printStackTrace();}
+        }*/
+        signin_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
         signup_pane.setVisible(false);
         emotion_pane.setVisible(false);
@@ -250,7 +380,6 @@ public class InterfacciaInizialeController {
         inserisciemozioni.setVisible(false);
         visualizzaplaylist.setVisible(false);
         btlogout.setVisible(false);
-        */
     }
 
 
@@ -608,78 +737,7 @@ public class InterfacciaInizialeController {
         }
     }
 
-    @FXML
-    void ricercaTitoloButton(ActionEvent event) {
-        String input = titolor.getText();
-        try {
-            ArrayList<Canzone> output = Client.getInstance().CercaBranoT(input);
-            if (output.size() == 0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Risultato ricerca:");
-                alert.setHeaderText(null);
-                alert.setContentText("Il titolo non è stato trovato");
-                alert.showAndWait();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Ricerca per titolo");
-                alert.setHeaderText(null);
-                for(var item : output)
-                {
-                    alert.setContentText(alert.getContentText().concat("\n" + item.toString()));
-                }
-                alert.showAndWait();
-            }
-        }
-        catch(Exception e){ e.printStackTrace();}
-    }
-    @FXML
-    void ricercaAutoreButton(ActionEvent event) {
-        String input = titolor.getText();
-        try {
-            ArrayList<Canzone> output = Client.getInstance().CercaBranoA(input);
-            if (output.size() == 0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Risultato ricerca:");
-                alert.setHeaderText(null);
-                alert.setContentText("l'autore non è stato trovato");
-                alert.showAndWait();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Ricerca per Autore");
-                alert.setHeaderText(null);
-                for(var item : output)
-                {
-                    alert.setContentText(alert.getContentText().concat("\n" + item.toString()));
-                }
-                alert.showAndWait();
-            }
-        }
-        catch(Exception e){ e.printStackTrace();}
-    }
-    @FXML
-    void ricercaAnnoButton(ActionEvent event) {
-        String input = titolor.getText();
-        try {
-            ArrayList<Canzone> output = Client.getInstance().CercaBranoY(input);
-            if (output.size() == 0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Risultato ricerca:");
-                alert.setHeaderText(null);
-                alert.setContentText("l'anno non è stato trovato");
-                alert.showAndWait();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Ricerca per Anno");
-                alert.setHeaderText(null);
-                for(var item : output)
-                {
-                    alert.setContentText(alert.getContentText().concat("\n" + item.toString()));
-                }
-                alert.showAndWait();
-            }
-        }
-        catch(Exception e){ e.printStackTrace();}
-    }
+
     @FXML
     public void cercaPlaylistButton(ActionEvent event){
        /* String input = nomePlaylist.getText();
