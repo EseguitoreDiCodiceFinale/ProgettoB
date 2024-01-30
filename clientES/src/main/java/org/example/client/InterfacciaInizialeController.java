@@ -159,9 +159,11 @@ public class InterfacciaInizialeController {
     @FXML
     private TextField emozioneCanzone;
     @FXML
+    private TextField emozioneAutore;
+    @FXML
     private TextField emozioneNomeUtente;
     @FXML
-    private TextField emozioneAutore;
+    private TextField emozioneAutoreInserire;
     @FXML
     private ChoiceBox choicebox_emozione;
     @FXML
@@ -197,7 +199,8 @@ public class InterfacciaInizialeController {
     @FXML
     public void initialize() {
         choiceboxRicerca.getItems().addAll("Titolo","Autore","Anno");
-        choiceboxRicerca.getSelectionModel().selectedIndexProperty().addListener((ObservableValue<? extends Number> ov, Number oldValue, Number newValue) -> {
+        //Ricerca che si avvia scegliendo l'opzione dalla choicebox
+        /*choiceboxRicerca.getSelectionModel().selectedIndexProperty().addListener((ObservableValue<? extends Number> ov, Number oldValue, Number newValue) -> {
             String selectedItem = choiceboxRicerca.getItems().get(newValue.intValue());
 
             switch (selectedItem) {
@@ -214,10 +217,23 @@ public class InterfacciaInizialeController {
                     // Gestire eventuali altri casi
                     break;
             }
+        });*/
+        titolor.setOnKeyPressed(event -> {
+            if (event.getCode().toString().equals("ENTER")) {
+                String searchTerm = titolor.getText();
+                //qui dentro va inserita l'operazione che si vuole fare quando si preve invio dentro la textbox
+                //quello sotto è un allert che verficare il funzionamento del tasto invio
+                /*Alert sesso = new Alert(Alert.AlertType.INFORMATION);
+                sesso.setTitle("Errore");
+                sesso.setHeaderText(null);
+                sesso.setContentText("Premo invio e funziona lol");
+                sesso.showAndWait();*/
+            }
         });
 
 
-        signin_pane.setVisible(false);
+
+        /*signin_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
         signup_pane.setVisible(false);
         emotion_pane.setVisible(false);
@@ -234,7 +250,7 @@ public class InterfacciaInizialeController {
         inserisciemozioni.setVisible(false);
         visualizzaplaylist.setVisible(false);
         btlogout.setVisible(false);
-
+        */
     }
 
 
