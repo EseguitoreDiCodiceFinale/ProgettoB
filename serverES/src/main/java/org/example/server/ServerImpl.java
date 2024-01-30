@@ -201,10 +201,13 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public int CreaPlaylist(String nome, String titolo, String nomeU, String autore) throws RemoteException {
         try{
-            int idPlaylist;
+            int idPlaylist = 0;
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection= handler.connectDB();
-            ResultSet resultSet = handler.select("SELECT MAX(idplaylist) AS ultimo_valore FROM playlist", dbconnection);
+            //ResultSet resultSet = handler.select("SELECT MAX(idplaylist) AS ultimo_valore FROM playlist", dbconnection);
+            ResultSet resultSet = handler.select("SELECT MAX(playlist.idplaylist) AS ultimo_valore FROM playlist " +
+                   "LEFT JOIN utente ON playlist.idutente=utente.userid", dbconnection);
+
             final String verificaCanzone =
                     "SELECT * FROM canzone" +
                             " WHERE titolo='" + titolo + "' AND autore='" + autore + "'";
@@ -214,13 +217,14 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             {
                 return 2;
             }
+
+
             if (resultSet.next())
             {
-                idPlaylist = resultSet.getInt("ultimo_valore");
+                idPlaylist = resultSet.getInt("ultimo_valore") + 1;
             }
-            else {
-                idPlaylist = 1;
-            }
+
+
             final String inserisciPlaylist =
                     "INSERT INTO playlist (idplaylist, nome, idutente) " +
                             "VALUES('" +
@@ -350,7 +354,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public ArrayList<Canzone> CercaBranoA(String au) throws RemoteException {
         try{
             final String selezionaCanzoni =
-                    "SELECT * FROM canzone WHERE titolo='" + au + "';";
+                    "SELECT * FROM canzone WHERE autore='" + au + "';";
 
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection=handler.connectDB();
@@ -379,7 +383,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public ArrayList<Canzone> CercaBranoY(String an) throws RemoteException {
         try{
             final String selezionaCanzoni =
-                    "SELECT * FROM canzone WHERE titolo='" + an + "';";
+                    "SELECT * FROM canzone WHERE anno='" + an + "';";
 
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection=handler.connectDB();
