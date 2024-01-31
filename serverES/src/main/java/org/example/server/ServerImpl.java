@@ -262,37 +262,58 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public int EliminaCanzone(String user, String nome, String canzone, String autore) throws RemoteException {
-      /*  try{
+    public int EliminaCanzone(String nomeU, String nome, String titolo, String autore) throws RemoteException {
+        try{
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection= handler.connectDB();
 
             final String idPlaylist =
-                    "SELECT idplaylist FROM playlist" +
-                            " WHERE nome='" + nome + "' AND idutente='" + nomeU + "'";
+                    "SELECT * FROM playlistcanzone" +
+                            " LEFT JOIN playlist ON playlistcanzone.idplaylist=playlist.idplaylist" +
+                            " LEFT JOIN canzone ON playlistcanzone.titolo=canzone.titolo AND playlistcanzone.autore=canzone.autore" +
+                            " WHERE playlist.nome='" + nome + "'";
 
             ResultSet resultSet = handler.select(idPlaylist, dbconnection);
 
-            final String inserisciCanzone =
-                    "INSERT INTO playlistcanzone (idplaylist, titolo, autore) " +
-                            "VALUES('" +
-                            resultSet.getString("idplaylist") + "','" +
-                            titolo + "','" +
-                            autore + "');";
-
-            boolean esito = handler.insert(inserisciCanzone, dbconnection);
-            handler.disconnect(dbconnection);
-            if(esito)
+            if(!resultSet.next())
             {
                 return 1;
-            }else{
-                return 0;
             }
+
+            final String verificaCanzone =
+                    "SELECT * FROM canzone" +
+                            " WHERE titolo='" + titolo + "' AND autore='" + autore + "'";
+
+            ResultSet resultSetCanzone = handler.select(verificaCanzone, dbconnection);
+            if (!resultSetCanzone.next())
+            {
+                return 2;
+            }
+
+            final String verificaCanzonePlaylist =
+                    "SELECT * FROM playlistcanzone" +
+                            " LEFT JOIN playlist ON playlistcanzone.idplaylist=playlist.idplaylist" +
+                            " LEFT JOIN canzone ON playlistcanzone.titolo=canzone.titolo AND playlistcanzone.autore=canzone.autore" +
+                            " WHERE playlistcanzone.titolo='" + titolo + "' AND playlistcanzone.autore='" + autore + "'";
+
+            ResultSet resultSetCanzonePlaylist = handler.select(verificaCanzonePlaylist, dbconnection);
+            if (!resultSetCanzonePlaylist.next())
+            {
+                return 3;
+            }
+
+            final String eliminaCanzone = "DELETE FROM playlistcanzone WHERE titolo='" + titolo + "' AND autore='" + autore + "'";
+
+            Boolean resultSetElimina = handler.insert(eliminaCanzone, dbconnection);
+
+            if(resultSetElimina)
+                return 0;
+
         }catch (SQLException e) {
             e.printStackTrace();
-            return 0;
-        }*/
-        return 0;
+            return 1;
+        }
+        return 4;
     }
 
     @Override

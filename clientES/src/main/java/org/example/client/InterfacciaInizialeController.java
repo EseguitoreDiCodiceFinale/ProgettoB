@@ -649,6 +649,13 @@ public class InterfacciaInizialeController {
                     alert3.setContentText("La canzone non è nella playlist");
                     alert3.showAndWait();
                     break;
+                case 4:
+                    Alert alert4 = new Alert(Alert.AlertType.INFORMATION);
+                    alert4.setTitle("Errore");
+                    alert4.setHeaderText(null);
+                    alert4.setContentText("Errore nell'eliminazione del brano");
+                    alert4.showAndWait();
+                    break;
             }
         }
         else{
