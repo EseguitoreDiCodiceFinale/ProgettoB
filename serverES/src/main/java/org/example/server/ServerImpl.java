@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Handler;
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
@@ -145,7 +144,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                             e.getNote() + "','" +
                             e.getUtente() + "','" +
                             e.getCanzone() + "','" +
-                            //e.getAutore() + "','" +
+                            e.getAutore() + "','" +
                             e.getCategoria() + "');";
 
             boolean esito = handler.insert(inserisciAssocia, dbconnection);
@@ -157,46 +156,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
         return false;
     }
-
-
-   /* public int CreaPlaylist(String nome, String titolo, String nomeU, String autore) throws RemoteException {
-        try{
-            int idPlaylist;
-            DatabaseHandler handler = new DatabaseHandler();
-            handler.connectDB();
-            ResultSet resultSet = handler.select("SELECT MAX(idplaylist) AS ultimo_valore FROM playlist");
-
-            if (resultSet.next()) {
-                idPlaylist = resultSet.getInt("ultimo_valore");
-            }
-            else {
-                idPlaylist = 1;
-            }
-
-            String tempAutore = "";
-            final String inserisciPlaylist =
-                    "INSERT INTO playlist (idplaylist, idutente, nome, titolocanzone, autorecanzone) " +
-                            "VALUES('" +
-                            idPlaylist + "','" +
-                            nomeU + "','" +
-                            nome + "','" +
-                            titolo + "','" +
-                            autore + "');";
-
-
-            boolean esito = handler.insert(inserisciPlaylist);
-            handler.disconnect();
-            if(esito)
-            {
-                return 1;
-            }else{
-                return 0;
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }*/
 
     @Override
     public int CreaPlaylist(String nome, String titolo, String nomeU, String autore) throws RemoteException {
@@ -455,7 +414,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public ArrayList<Emozione> VisualizzaEmozioni() throws RemoteException {
+    public ArrayList<Emozione> CercaEmozioni(String canzone) throws RemoteException {
         return null;
     }
 

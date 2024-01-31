@@ -14,6 +14,7 @@ import org.example.common.Playlist;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class InterfacciaInizialeController {
     @FXML
@@ -119,7 +120,7 @@ public class InterfacciaInizialeController {
     @FXML
     public Pane eliminacanzone_pane;
     @FXML
-    private TextArea areaemozioni;
+    private ListView areaemozioni;
 
     @FXML
     private Label titolo;
@@ -191,7 +192,8 @@ public class InterfacciaInizialeController {
 
 
     @FXML
-    private Button visualizza;
+    private Button visualizzaE;
+
     private Stage stage;
     private Scene scene;
 
@@ -201,30 +203,9 @@ public class InterfacciaInizialeController {
         choiceboxRicerca.getItems().addAll("Titolo","Autore","Anno");
         choicebox_emozione.getItems().addAll("Stupore","Calma","Gioia","Nostalgia","Enegia","Tristezza","Solennità","Tenerezza","Tensione");
         choicebox_score.getItems().addAll("1","2","3","4","5");
-
-
-        //Ricerca che si avvia scegliendo l'opzione dalla choicebox
-        /*choiceboxRicerca.getSelectionModel().selectedIndexProperty().addListener((ObservableValue<? extends Number> ov, Number oldValue, Number newValue) -> {
-            String selectedItem = choiceboxRicerca.getItems().get(newValue.intValue());
-
-            switch (selectedItem) {
-                case "Titolo":
-                    //ricerca con titolo
-                    break;
-                case "Autore":
-                    //ricerca con autore
-                    break;
-                case "Anno":
-                    //ricerca con anno
-                    break;
-                default:
-                    // Gestire eventuali altri casi
-                    break;
-            }
-        });*/
         titolor.setOnKeyPressed(event -> {
             if (event.getCode().toString().equals("ENTER")) {
-                String searchTerm = titolor.getText();
+                String searchTerm = " " + titolor.getText();
                 String selectedItem = choiceboxRicerca.getValue();
                 try {
                     if (!(selectedItem == null)){
@@ -304,78 +285,7 @@ public class InterfacciaInizialeController {
                 }
             }
         });
-        /*@FXML
-        void ricercaTitoloButton(ActionEvent event) {
-            String input = titolor.getText();
-            try {
-                ArrayList<Canzone> output = Client.getInstance().CercaBranoT(input);
-                if (output.size() == 0) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Risultato ricerca:");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Il titolo non è stato trovato");
-                    alert.showAndWait();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ricerca per titolo");
-                    alert.setHeaderText(null);
-                    for(var item : output)
-                    {
-                        alert.setContentText(alert.getContentText().concat("\n" + item.toString()));
-                    }
-                    alert.showAndWait();
-                }
-            }
-            catch(Exception e){ e.printStackTrace();}
-        }
-        @FXML
-        void ricercaAutoreButton(ActionEvent event) {
-            String input = titolor.getText();
-            try {
-                ArrayList<Canzone> output = Client.getInstance().CercaBranoA(input);
-                if (output.size() == 0) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Risultato ricerca:");
-                    alert.setHeaderText(null);
-                    alert.setContentText("l'autore non è stato trovato");
-                    alert.showAndWait();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ricerca per Autore");
-                    alert.setHeaderText(null);
-                    for(var item : output)
-                    {
-                        alert.setContentText(alert.getContentText().concat("\n" + item.toString()));
-                    }
-                    alert.showAndWait();
-                }
-            }
-            catch(Exception e){ e.printStackTrace();}
-        }
-        @FXML
-        void ricercaAnnoButton(ActionEvent event) {
-            String input = titolor.getText();
-            try {
-                ArrayList<Canzone> output = Client.getInstance().CercaBranoY(input);
-                if (output.size() == 0) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Risultato ricerca:");
-                    alert.setHeaderText(null);
-                    alert.setContentText("l'anno non è stato trovato");
-                    alert.showAndWait();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ricerca per Anno");
-                    alert.setHeaderText(null);
-                    for(var item : output)
-                    {
-                        alert.setContentText(alert.getContentText().concat("\n" + item.toString()));
-                    }
-                    alert.showAndWait();
-                }
-            }
-            catch(Exception e){ e.printStackTrace();}
-        }*/
+
         signin_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
         signup_pane.setVisible(false);
@@ -389,7 +299,7 @@ public class InterfacciaInizialeController {
         creaplaylist.setVisible(false);
         aggiungibrano.setVisible(false);
         eliminabrano.setVisible(false);
-        visualizza.setVisible(false);
+        visualizzaE.setVisible(false);
         inserisciemozioni.setVisible(false);
         visualizzaplaylist.setVisible(false);
         btlogout.setVisible(false);
@@ -400,7 +310,6 @@ public class InterfacciaInizialeController {
     public void completaRegistrazioneButton(ActionEvent event) throws IOException {
         if(!(nomeutenteid.getText().equals("") || nome.getText().equals("")  || cognome.getText().equals("")  ||email.getText().equals("")  || password.getText().equals("") || via.getText().equals("") || numerocivico.getText().equals("") || codicepostale.getText().equals("") ||  codicepostale.getText().length()<5 || comune.getText().equals("") || provincia.getText().equals("")))
         {
-            //controlli client
             switch (Client.getInstance().Registrazione(nomeutenteid.getText(), nome.getText(), cognome.getText(), via.getText(), numerocivico.getText(), codicepostale.getText(), comune.getText(), provincia.getText(), email.getText(), password.getText())) {
                 case 0:
                     signup_pane.setVisible(false);
@@ -575,6 +484,7 @@ public class InterfacciaInizialeController {
                     accedi.setVisible(false);
                     registrati.setVisible(false);
                     aggiungibrano.setVisible(true);
+                    visualizzaE.setVisible(true);
                     visualizzaplaylist.setVisible(true);
                     eliminabrano.setVisible(true);
                     btlogout.setVisible(true);
@@ -598,8 +508,8 @@ public class InterfacciaInizialeController {
 
     @FXML
     void inserisciEmozioniCButton(ActionEvent event) throws RemoteException {
-        if(!(choicebox_emozione.getValue().toString().equals("") || choicebox_score.getValue().toString().equals("") || emozioneCanzone.getText().equals(""))){
-            switch (Client.getInstance().InserisciEmozione(choicebox_emozione.getValue().toString(), choicebox_score.getValue().toString(), tf_note.getText(), emozioneCanzone.getText())){
+        if(!(choicebox_emozione.getValue().toString().equals("") || choicebox_score.getValue().toString().equals("") || emozioneCanzone.getText().equals("") || emozioneAutoreInserire.getText().equals(""))){
+            switch (Client.getInstance().InserisciEmozione(choicebox_emozione.getValue().toString(), choicebox_score.getValue().toString(), tf_note.getText(), " "+emozioneCanzone.getText(), emozioneAutoreInserire.getText())){
                 case 0:
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Inserimento Riuscito");
@@ -631,10 +541,10 @@ public class InterfacciaInizialeController {
     void creaPlaylistCButton(ActionEvent event) throws RemoteException {
         //controlli client
         if(!(nomePlaylist.getText().equals("") || playlistCanzone.getText().equals(""))) {
-            switch (Client.getInstance().CreaPlaylist(nomePlaylist.getText(), playlistCanzone.getText(), autorePC.getText())) {
+            switch (Client.getInstance().CreaPlaylist(nomePlaylist.getText(), " "+playlistCanzone.getText(), autorePC.getText())) {
                 case 0:
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("");
+                    alert.setTitle("Creazione riuscita");
                     alert.setHeaderText(null);
                     alert.setContentText("Playlist creata con successo");
                     playlist_pane.setVisible(false);
@@ -667,11 +577,11 @@ public class InterfacciaInizialeController {
 
     @FXML
     void aggiungiCanzoneCButton(ActionEvent event) throws RemoteException{
-        //controlli client
         if(!(nomePlaylistI.getText().equals("")|| playlistCanzoneI.getText().equals(""))){
-            switch (Client.getInstance().InserisciCanzone(playlistCanzoneI.getText(), nomePlaylistI.getText(), autorePI.getText())){
+            switch (Client.getInstance().InserisciCanzone(" "+playlistCanzoneI.getText(), nomePlaylistI.getText(), autorePI.getText())){
                 case 0:
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Inserimento riusicto");
                     alert.setHeaderText(null);
                     alert.setTitle("La canzone è stata inserita con successo");
                     alert.showAndWait();
@@ -709,11 +619,11 @@ public class InterfacciaInizialeController {
     }
     @FXML
     void eliminaCanzoneCButton(ActionEvent event) throws RemoteException{
-        //controlli client
-        if(!(nomePlaylistIC.getText().equals("")|| playlistCanzoneIC.getText().equals(""))){
-            switch (Client.getInstance().EliminaCanzone(playlistCanzoneIC.getText(), nomePlaylistIC.getText(), autorePD.getText())){
+        if(!(nomePlaylistIC.getText().equals("")|| playlistCanzoneIC.getText().equals("") ||  autorePD.getText().equals(""))){
+            switch (Client.getInstance().EliminaCanzone(" "+playlistCanzoneIC.getText(), nomePlaylistIC.getText(), autorePD.getText())){
                 case 0:
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Eliminazione riuscita");
                     alert.setHeaderText(null);
                     alert.setTitle("La canzone è stata eliminata con successo");
                     alert.showAndWait();
@@ -750,7 +660,6 @@ public class InterfacciaInizialeController {
         }
     }
 
-
     @FXML
     public void cercaPlaylistButton(ActionEvent event){
        /* String input = nomePlaylist.getText();
@@ -769,8 +678,13 @@ public class InterfacciaInizialeController {
         catch(Exception e){ e.printStackTrace();} */
     }
     @FXML
-    public void visualizzaEmozioniCButton(ActionEvent event){
-
+    public void visualizzaEmozioniCButton(ActionEvent event) throws RemoteException {
+        if (!(nomeCanzoneV.getText().equals(""))) {
+            for(var item : Client.getInstance().CercaEmozioni(nomeCanzoneV.getText()))
+            {
+                areaemozioni.getItems().add(item);
+            }
+        }
     }
     @FXML
     public void logoutButton(ActionEvent event){
@@ -794,7 +708,7 @@ public class InterfacciaInizialeController {
         registrati.setVisible(true);
         login.setVisible(true);
         visualizzacanzoni.setVisible(true);
-        visualizza.setVisible(true);
+        visualizzaE.setVisible(false);
         accedi.setVisible(true);
 
     }
@@ -905,8 +819,6 @@ public class InterfacciaInizialeController {
         eliminacanzone_pane.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
         logocentrale.setVisible(false);
-
-        //Canzone canzone = new Canzone("", "","");
         for(var item : Client.getInstance().VisualizzaCanzoni())
         {
             textareacanzoni.getItems().add(item);
@@ -925,7 +837,6 @@ public class InterfacciaInizialeController {
         eliminacanzone_pane.setVisible(false);
         visualizza_playlist_pane.setVisible(true);
         logocentrale.setVisible(false);
-
         Playlist playlist = new Playlist("", null,"");
         for(var item : Client.getInstance().VisualizzaPlaylist())
         {
@@ -934,7 +845,7 @@ public class InterfacciaInizialeController {
     }
 /*
     @FXML
-    void visualizzaemozioniButtone(ActionEvent event) throws RemoteException {
+    void visualizzaEmozioniCButton(ActionEvent event) throws RemoteException {
         mostracanzoni_pane.setVisible(false);
         signin_pane.setVisible(false);
         signup_pane.setVisible(false);

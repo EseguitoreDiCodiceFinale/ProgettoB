@@ -101,8 +101,8 @@ public class Client extends Thread{
         return 1;
     }
 
-    public synchronized int InserisciEmozione(String categoria, String punteggio, String note, String canzone) throws RemoteException{
-        Emozione e=new Emozione(categoria,punteggio, note, canzone, UtenteAttuale);
+    public synchronized int InserisciEmozione(String categoria, String punteggio, String note, String canzone, String autore) throws RemoteException{
+        Emozione e=new Emozione(categoria,punteggio, note, canzone, autore, UtenteAttuale);
         if(server.InserisciEmozione(e)){
             return 0;
         }
@@ -138,8 +138,8 @@ public class Client extends Thread{
         return server.VisualizzaCanzoni();
     }
 
-    public synchronized ArrayList<Emozione> VisualizzaEmozioni() throws RemoteException{
-        return server.VisualizzaEmozioni();
+    public synchronized ArrayList<Emozione> CercaEmozioni(String canzone) throws RemoteException{
+        return server.CercaEmozioni(canzone);
     }
 
     public synchronized ArrayList<Playlist> VisualizzaPlaylist() throws RemoteException{
