@@ -124,20 +124,32 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public boolean InserisciEmozione(Emozione e) throws RemoteException {
         try{
-            int idAssocia;
+            int idAssocia = 0;
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection= handler.connectDB();
-            ResultSet resultSet = handler.select("SELECT MAX(idassocia) AS ultimo_valore FROM associa", dbconnection);
+
+            final String selectId = "SELECT MAX(idassocia) AS ultimo_valore FROM associa" +
+                    " LEFT JOIN utente ON associa.idutente=utente.userid" +
+                    " LEFT JOIN emozione ON associa.categiriaemozione=emozione.categoria" +
+                    " LEFT JOIN canzone ON associa.titolocanzone=canzone.titolo AND associa.autorecanzone=canzone.autore";
+            ResultSet resultSet = handler.select(selectId, dbconnection);
 
             if (resultSet.next()) {
-                idAssocia = resultSet.getInt("ultimo_valore");
+                idAssocia = resultSet.getInt("ultimo_valore") + 1;
             }
-            else {
-                idAssocia = 1;
+
+            final String verificaCanzone =
+                    "SELECT * FROM canzone" +
+                            " WHERE titolo='" + e.getCanzone() + "' AND autore='" + e.getAutore() + "'";
+
+            ResultSet resultSetCanzone = handler.select(verificaCanzone, dbconnection);
+            if (!resultSetCanzone.next())
+            {
+                return false;
             }
 
             final String inserisciAssocia =
-                    "INSERT INTO associa (idassocia, punteggio, note, idutente, titolocanzone, autorecanzone, categoriaemozione)" +
+                    "INSERT INTO associa (idassocia, punteggio, note, idutente, titolocanzone, autorecanzone, categiriaemozione)" +
                             "VALUES('" +
                             idAssocia + "','" +
                             e.getPunteggio() + "','" +
@@ -148,6 +160,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                             e.getCategoria() + "');";
 
             boolean esito = handler.insert(inserisciAssocia, dbconnection);
+
+            if(esito)
+                return true;
+
             handler.disconnect(dbconnection);
         }catch (SQLException ex)
         {
