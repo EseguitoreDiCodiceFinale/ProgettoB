@@ -127,8 +127,8 @@ public class Client extends Thread{
     public synchronized ArrayList<Canzone> CercaBranoY(String anno) throws RemoteException{
         return server.CercaBranoY(anno);
     }
-    public synchronized ArrayList<Playlist> a(String nomeP) throws RemoteException{
-        return server.CercaPlaylist(UtenteAttuale, nomeP);
+    public synchronized ArrayList<Playlist> VisualizzaPlaylist() throws RemoteException{
+        return server.CercaPlaylist(UtenteAttuale);
     }
 
     public synchronized ArrayList<Canzone> VisualizzaCanzoni() throws RemoteException{
@@ -137,10 +137,6 @@ public class Client extends Thread{
 
     public synchronized ArrayList<Emozione> CercaEmozioni(String canzone) throws RemoteException{
         return server.CercaEmozioni(canzone);
-    }
-
-    public synchronized ArrayList<Playlist> VisualizzaPlaylist() throws RemoteException{
-        return server.VisualizzaPlaylist();
     }
 
     public static void main(String[] args){

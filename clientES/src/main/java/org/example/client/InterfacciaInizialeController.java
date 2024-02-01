@@ -816,7 +816,7 @@ public class InterfacciaInizialeController {
     }
 
     @FXML
-    void visualizzaPlaylistButton(ActionEvent event){
+    void visualizzaPlaylistButton(ActionEvent event) throws RemoteException {
         visualizza_playlist_pane.setVisible(true);
         signin_pane.setVisible(false);
         signup_pane.setVisible(false);
@@ -827,6 +827,10 @@ public class InterfacciaInizialeController {
         playlistI_pane.setVisible(false);
         eliminacanzone_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
+        for(var item : Client.getInstance().VisualizzaPlaylist())
+        {
+            textAreaPlaylist.getItems().add(item);
+        }
     }
 
     @FXML
@@ -847,24 +851,7 @@ public class InterfacciaInizialeController {
         }
     }
 
-    @FXML
-    void visualizzaplaylistButton(ActionEvent event) throws RemoteException {
-        mostracanzoni_pane.setVisible(false);
-        signin_pane.setVisible(false);
-        signup_pane.setVisible(false);
-        emotionV_pane.setVisible(false);
-        emotion_pane.setVisible(false);
-        playlist_pane.setVisible(false);
-        playlistI_pane.setVisible(false);
-        eliminacanzone_pane.setVisible(false);
-        visualizza_playlist_pane.setVisible(true);
-        logocentrale.setVisible(false);
-        Playlist playlist = new Playlist("", null,"");
-        for(var item : Client.getInstance().VisualizzaPlaylist())
-        {
-            textAreaPlaylist.getItems().add(item);
-        }
-    }
+
 /*
     @FXML
     void visualizzaEmozioniCButton(ActionEvent event) throws RemoteException {

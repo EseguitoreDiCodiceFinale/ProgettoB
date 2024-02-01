@@ -430,7 +430,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
     @Override
-    public ArrayList<Playlist> CercaPlaylist(String nomeU, String nomeP) throws RemoteException {
+    public ArrayList<Playlist> CercaPlaylist(String nomeU) throws RemoteException {
         try{
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection=handler.connectDB();
@@ -512,8 +512,4 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return null;
     }
 
-    @Override
-    public ArrayList<Playlist> VisualizzaPlaylist() throws RemoteException {
-        return null;
-    }
 }

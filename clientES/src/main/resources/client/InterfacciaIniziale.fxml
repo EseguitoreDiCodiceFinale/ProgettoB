@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="526.0" minWidth="825.0" prefHeight="526.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.client.InterfacciaInizialeController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="526.0" minWidth="825.0" prefHeight="526.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.client.InterfacciaInizialeController">
    <children>
       <Button fx:id="btlogout" layoutX="1.0" layoutY="434.0" mnemonicParsing="false" onAction="#logoutButton" prefHeight="45.0" prefWidth="261.0" text="Logout" textAlignment="CENTER">
          <font>
@@ -137,7 +137,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="visualizzaplaylist" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="389.0" mnemonicParsing="false" onAction="#visualizzaPlaylistButton" prefHeight="45.0" prefWidth="261.0" text="Cerca Playlist">
+      <Button fx:id="visualizzaplaylist" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="389.0" mnemonicParsing="false" onAction="#visualizzaPlaylistButton" prefHeight="45.0" prefWidth="261.0" text="Visualizza Playlist">
          <font>
             <Font size="15.0" />
          </font>
@@ -309,14 +309,12 @@
                <children>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="564.0">
                      <children>
-                        <TextField fx:id="textFiledPlaylist" layoutX="175.0" layoutY="88.0" prefHeight="26.0" prefWidth="214.0" promptText="inserire..." />
-                        <Label layoutX="201.0" layoutY="59.0" prefHeight="23.0" prefWidth="199.0" text="Inserire nome playlist:">
+                        <Label layoutX="201.0" layoutY="59.0" prefHeight="23.0" prefWidth="199.0" text="Playlist Create:">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="TextAreaVisualizzaPlaylist" layoutX="27.0" layoutY="128.0" prefHeight="371.0" prefWidth="526.0" />
-                        <Button fx:id="cercaPlaylist" layoutX="412.0" layoutY="88.0" mnemonicParsing="false" onAction="#cercaPlaylistButton" prefHeight="26.0" prefWidth="74.0" text="cerca" />
+                        <TextArea fx:id="TextAreaVisualizzaPlaylist" layoutX="24.0" layoutY="99.0" prefHeight="379.0" prefWidth="528.0" />
                         </children>
                      </AnchorPane>
                   </children>
