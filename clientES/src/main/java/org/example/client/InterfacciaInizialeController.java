@@ -201,7 +201,7 @@ public class InterfacciaInizialeController {
     @FXML
     public void initialize() {
         choiceboxRicerca.getItems().addAll("Titolo","Autore","Anno");
-        choicebox_emozione.getItems().addAll("Stupore","Calma","Gioia","Nostalgia","Enegia","Tristezza","Solennità","Tenerezza","Tensione");
+        choicebox_emozione.getItems().addAll("Amazement","Calmness","Joy","Nostalgia","Power","Sadness","Solemnity","Tenderness","Tension");
         choicebox_score.getItems().addAll("1","2","3","4","5");
         titolor.setOnKeyPressed(event -> {
             if (event.getCode().toString().equals("ENTER")) {
@@ -522,9 +522,24 @@ public class InterfacciaInizialeController {
                     Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                     alert1.setTitle("Errore");
                     alert1.setHeaderText(null);
-                    alert1.setContentText("Emozione già registrata");
+                    alert1.setContentText("Emozione già registrata per questa canzone");
                     alert1.showAndWait();
                     break;
+                case 2:
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert2.setTitle("Errore");
+                    alert2.setHeaderText(null);
+                    alert2.setContentText("La canzone inserita è inesistente");
+                    alert2.showAndWait();
+                    break;
+                case 3:
+                    Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
+                    alert3.setTitle("Errore");
+                    alert3.setHeaderText(null);
+                    alert3.setContentText("Errore");
+                    alert3.showAndWait();
+                    break;
+
             }
         }
         else

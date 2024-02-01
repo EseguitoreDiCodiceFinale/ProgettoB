@@ -122,7 +122,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public boolean InserisciEmozione(Emozione e) throws RemoteException {
+    public int InserisciEmozione(Emozione e) throws RemoteException {
         try{
             int idAssocia = 0;
             DatabaseHandler handler = DatabaseHandler.getInstance();
@@ -145,7 +145,20 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             ResultSet resultSetCanzone = handler.select(verificaCanzone, dbconnection);
             if (!resultSetCanzone.next())
             {
-                return false;
+                return 2;
+            }
+
+            final String verificaEmozione = "SELECT idutente, titolocanzone, autorecanzone FROM associa" +
+                    " LEFT JOIN utente ON associa.idutente=utente.userid" +
+                    " LEFT JOIN emozione ON associa.categiriaemozione=emozione.categoria" +
+                    " LEFT JOIN canzone ON associa.titolocanzone=canzone.titolo AND associa.autorecanzone=canzone.autore" +
+                    " WHERE associa.idutente='" + e.getUtente() + "' AND associa.titolocanzone='" + e.getCanzone() + "' AND associa.autorecanzone='" + e.getAutore() + "'";
+
+            ResultSet resultSetEmozione = handler.select(verificaEmozione, dbconnection);
+
+            if(resultSetEmozione.next())
+            {
+                return 1;
             }
 
             final String inserisciAssocia =
@@ -162,15 +175,16 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             boolean esito = handler.insert(inserisciAssocia, dbconnection);
 
             if(esito)
-                return true;
+                return 0;
 
             handler.disconnect(dbconnection);
+
         }catch (SQLException ex)
         {
             ex.printStackTrace();
-            return false;
+            return 4;
         }
-        return false;
+        return 4;
     }
 
     @Override

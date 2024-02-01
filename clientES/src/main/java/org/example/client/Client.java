@@ -103,10 +103,7 @@ public class Client extends Thread{
 
     public synchronized int InserisciEmozione(String categoria, String punteggio, String note, String canzone, String autore) throws RemoteException{
         Emozione e=new Emozione(categoria,punteggio, note, canzone, autore, UtenteAttuale);
-        if(server.InserisciEmozione(e)){
-            return 0;
-        }
-        return 1;
+        return server.InserisciEmozione(e);
     }
 
     public synchronized int CreaPlaylist(String nomeP, String nomeC, String autore) throws  RemoteException{
