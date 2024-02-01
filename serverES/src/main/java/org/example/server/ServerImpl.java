@@ -431,7 +431,50 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
     @Override
     public ArrayList<Playlist> CercaPlaylist(String nomeU, String nomeP) throws RemoteException {
+        try{
+            DatabaseHandler handler = DatabaseHandler.getInstance();
+            dbconnection=handler.connectDB();
 
+            final String selezionaPlaylist =
+                    "SELECT * FROM playlist" +
+                            " LEFT JOIN utente ON playlist.idutente=utente.userid" +
+                            " WHERE playlist.idutente='" + nomeU + "'";
+
+            ResultSet resultSet = handler.select(selezionaPlaylist, dbconnection);
+            ArrayList<Playlist> listaPlaylist = new ArrayList<>();
+
+            while(resultSet.next())
+            {
+                String idPlaylist = resultSet.getString("idplaylist");
+
+                final String selezionaPlaylistCanzone =
+                        "SELECT canzone.anno, playlistcanzone.titolo, playlistcanzone.autore FROM playlistcanzone" +
+                                " JOIN canzone ON playlistcanzone.titolo=canzone.titolo AND playlistcanzone.autore=canzone.autore" +
+                                " JOIN playlist ON playlistcanzone.idplaylist=playlist.idplaylist" +
+                                " WHERE playlistcanzone.idplaylist='" + idPlaylist + "'";
+
+                ResultSet resultSetPlaylistCanzone = handler.select(selezionaPlaylistCanzone, dbconnection);
+                ArrayList<Canzone> listaCanzoni = new ArrayList<>();
+
+                while(resultSetPlaylistCanzone.next())
+                {
+                    String titolo = resultSetPlaylistCanzone.getString("titolo");
+                    String autore = resultSetPlaylistCanzone.getString("autore");
+                    String anno = resultSetPlaylistCanzone.getString("anno");
+                    Canzone canzone = new Canzone(titolo, autore, anno);
+                    listaCanzoni.add(canzone);
+                }
+
+                String nome = resultSet.getString("nome");
+                String utente = resultSet.getString("idutente");
+                Playlist playlist = new Playlist(nome, listaCanzoni, utente);
+                listaPlaylist.add(playlist);
+            }
+            return listaPlaylist;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         return null;
     }
 
