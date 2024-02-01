@@ -74,10 +74,10 @@ public class InterfacciaInizialeController {
     private AnchorPane pane;
 
     @FXML
-    private TextField password;
+    private PasswordField password;
 
     @FXML
-    private TextField password1;
+    private PasswordField password1;
 
     @FXML
     private TextField provincia;
