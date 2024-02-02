@@ -509,7 +509,35 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     @Override
     public ArrayList<Emozione> CercaEmozioni(String canzone) throws RemoteException {
-        return null;
+        try{
+            final String selezionaEmozioni =
+                    "SELECT * FROM associa" +
+                            " LEFT JOIN utente ON associa.idutente=utente.userid" +
+                            " LEFT JOIN emozione ON associa.categiriaemozione=emozione.categoria" +
+                            " LEFT JOIN canzone ON associa.titolocanzone=canzone.titolo AND associa.autorecanzone=canzone.autore" +
+                            " WHERE associa.titolocanzone='" + canzone;
+
+            DatabaseHandler handler = DatabaseHandler.getInstance();
+            dbconnection=handler.connectDB();
+
+            ResultSet resultSet = handler.select(selezionaEmozioni, dbconnection);
+            ArrayList<Emozione> listaEmozioni = new ArrayList<>();
+            while(resultSet.next())
+            {
+                String titolo = resultSet.getString("titolocanzone");
+                String autore = resultSet.getString("autorecanzone");
+                String categoria = resultSet.getString("categoriaemozione");
+                String utente = resultSet.getString("idutente");
+                String note = resultSet.getString("note");
+                String punteggio = resultSet.getString("punteggio");
+                Emozione emozione = new Emozione(categoria, punteggio, note, titolo, autore, utente);
+                listaEmozioni.add(emozione);
+            }
+            return listaEmozioni;
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }
