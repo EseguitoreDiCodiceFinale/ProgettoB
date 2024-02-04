@@ -187,9 +187,9 @@ public class InterfacciaInizialeController {
     private  TextField autorePI;
     @FXML
     private TextField autorePD;
-    @FXML
+    /*@FXML
     private TextArea TextAreaVisualizzaPlaylist;
-
+*/
 
     @FXML
     private Button visualizzaE;
@@ -702,7 +702,7 @@ public class InterfacciaInizialeController {
     @FXML
     public void visualizzaEmozioniCButton(ActionEvent event) throws RemoteException {
         if (!(nomeCanzoneV.getText().equals(""))) {
-            for(var item : Client.getInstance().CercaEmozioni(nomeCanzoneV.getText()))
+            for(var item : Client.getInstance().CercaEmozioni(" " +nomeCanzoneV.getText()))
             {
                 areaemozioni.getItems().add(item);
             }
