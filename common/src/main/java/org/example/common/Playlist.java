@@ -27,6 +27,6 @@ public class Playlist implements Serializable {
 
     @Override
     public String toString() {
-        return "Playlist" +  "Nome Playlist:" + nomePlaylist + ", Canzoni: " + listaCanzoni +", Nome Utente:" + nomeUtente;
+        return "Nome Playlist: " + nomePlaylist + ", Canzoni: " + listaCanzoni +", Nome Utente: " + nomeUtente;
     }
 }
