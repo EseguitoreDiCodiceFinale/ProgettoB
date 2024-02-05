@@ -205,13 +205,13 @@ public class InterfacciaInizialeController {
         choicebox_score.getItems().addAll("1","2","3","4","5");
         titolor.setOnKeyPressed(event -> {
             if (event.getCode().toString().equals("ENTER")) {
-                String searchTerm = " " + titolor.getText();
+                String searchTerm = titolor.getText();
                 String selectedItem = choiceboxRicerca.getValue();
                 try {
                     if (!(selectedItem == null)){
                         switch (selectedItem) {
                             case "Titolo":
-                                ArrayList<Canzone> outputT = Client.getInstance().CercaBranoT(searchTerm);
+                                ArrayList<Canzone> outputT = Client.getInstance().CercaBranoT(" " + searchTerm);
                                 if (outputT.size() == 0) {
                                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                                     alert.setTitle("Risultato ricerca:");

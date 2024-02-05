@@ -124,6 +124,18 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public int InserisciEmozione(Emozione e) throws RemoteException {
         try{
+            String newTi = e.getCanzone();
+            String newAu = e.getAutore();
+
+            if(e.getCanzone().contains("'"))
+            {
+                newTi = e.getCanzone().replace("'", "''");
+            }
+            if (e.getAutore().contains("'"))
+            {
+                newAu = e.getAutore().replace("'", "''");
+            }
+
             int idAssocia = 0;
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection= handler.connectDB();
@@ -140,7 +152,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
             final String verificaCanzone =
                     "SELECT * FROM canzone" +
-                            " WHERE titolo='" + e.getCanzone() + "' AND autore='" + e.getAutore() + "'";
+                            " WHERE titolo='" + newTi + "' AND autore='" + newAu + "'";
 
             ResultSet resultSetCanzone = handler.select(verificaCanzone, dbconnection);
             if (!resultSetCanzone.next())
@@ -152,7 +164,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                     " LEFT JOIN utente ON associa.idutente=utente.userid" +
                     " LEFT JOIN emozione ON associa.categiriaemozione=emozione.categoria" +
                     " LEFT JOIN canzone ON associa.titolocanzone=canzone.titolo AND associa.autorecanzone=canzone.autore" +
-                    " WHERE associa.idutente='" + e.getUtente() + "' AND associa.titolocanzone='" + e.getCanzone() + "' AND associa.autorecanzone='" + e.getAutore() + "'";
+                    " WHERE associa.idutente='" + e.getUtente() + "' AND associa.titolocanzone='" + newTi + "' AND associa.autorecanzone='" + newAu + "'";
 
             ResultSet resultSetEmozione = handler.select(verificaEmozione, dbconnection);
 
@@ -168,8 +180,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                             e.getPunteggio() + "','" +
                             e.getNote() + "','" +
                             e.getUtente() + "','" +
-                            e.getCanzone() + "','" +
-                            e.getAutore() + "','" +
+                            newTi + "','" +
+                            newAu + "','" +
                             e.getCategoria() + "');";
 
             boolean esito = handler.insert(inserisciAssocia, dbconnection);
@@ -190,6 +202,17 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public int CreaPlaylist(String nome, String titolo, String nomeU, String autore) throws RemoteException {
         try{
+            String newTi = titolo;
+            String newAu = autore;
+            if(titolo.contains("'"))
+            {
+                newTi = titolo.replace("'", "''");
+            }
+            if (autore.contains("'"))
+            {
+                newAu = autore.replace("'", "''");
+            }
+
             int idPlaylist = 0;
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection= handler.connectDB();
@@ -199,7 +222,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
             final String verificaCanzone =
                     "SELECT * FROM canzone" +
-                            " WHERE titolo='" + titolo + "' AND autore='" + autore + "'";
+                            " WHERE titolo='" + newTi + "' AND autore='" + newAu + "'";
 
             ResultSet resultSetCanzone = handler.select(verificaCanzone, dbconnection);
             if (!resultSetCanzone.next())
@@ -226,8 +249,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                     "INSERT INTO playlistcanzone (idplaylist, titolo, autore) " +
                             "VALUES('" +
                             idPlaylist + "','" +
-                            titolo + "','" +
-                            autore + "');";
+                            newTi + "','" +
+                            newAu + "');";
             boolean esito = handler.insert(inserisciPlaylist, dbconnection);
             boolean esito2 = handler.insert(inserisciCanzone, dbconnection);
             handler.disconnect(dbconnection);
@@ -246,6 +269,17 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public int InserisciCanzone(String nomeU, String nome, String titolo, String autore) throws RemoteException {
         try{
+            String newTi = titolo;
+            String newAu = autore;
+            if(titolo.contains("'"))
+            {
+                newTi = titolo.replace("'", "''");
+            }
+            if (autore.contains("'"))
+            {
+                newAu = autore.replace("'", "''");
+            }
+
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection= handler.connectDB();
 
@@ -262,7 +296,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
             final String verificaCanzone =
                     "SELECT * FROM canzone" +
-                            " WHERE titolo='" + titolo + "' AND autore='" + autore + "'";
+                            " WHERE titolo='" + newTi + "' AND autore='" + newAu + "'";
 
             ResultSet resultSetCanzone = handler.select(verificaCanzone, dbconnection);
             if (!resultSetCanzone.next())
@@ -274,8 +308,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                     "INSERT INTO playlistcanzone (idplaylist, titolo, autore) " +
                             "VALUES('" +
                             resultSet.getString("idplaylist") + "','" +
-                            titolo + "','" +
-                            autore + "');";
+                            newTi + "','" +
+                            newAu + "');";
 
             boolean esito = handler.insert(inserisciCanzone, dbconnection);
             handler.disconnect(dbconnection);
@@ -294,6 +328,17 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public int EliminaCanzone(String nomeU, String nome, String titolo, String autore) throws RemoteException {
         try{
+            String newTi = titolo;
+            String newAu = autore;
+            if(titolo.contains("'"))
+            {
+                newTi = titolo.replace("'", "''");
+            }
+            if (autore.contains("'"))
+            {
+                newAu = autore.replace("'", "''");
+            }
+
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection= handler.connectDB();
 
@@ -312,7 +357,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
             final String verificaCanzone =
                     "SELECT * FROM canzone" +
-                            " WHERE titolo='" + titolo + "' AND autore='" + autore + "'";
+                            " WHERE titolo='" + newTi + "' AND autore='" + newAu + "'";
 
             ResultSet resultSetCanzone = handler.select(verificaCanzone, dbconnection);
             if (!resultSetCanzone.next())
@@ -324,7 +369,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                     "SELECT * FROM playlistcanzone" +
                             " LEFT JOIN playlist ON playlistcanzone.idplaylist=playlist.idplaylist" +
                             " LEFT JOIN canzone ON playlistcanzone.titolo=canzone.titolo AND playlistcanzone.autore=canzone.autore" +
-                            " WHERE playlistcanzone.titolo='" + titolo + "' AND playlistcanzone.autore='" + autore + "'";
+                            " WHERE playlistcanzone.titolo='" + newTi + "' AND playlistcanzone.autore='" + newAu + "'";
 
             ResultSet resultSetCanzonePlaylist = handler.select(verificaCanzonePlaylist, dbconnection);
             if (!resultSetCanzonePlaylist.next())
@@ -332,7 +377,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 return 3;
             }
 
-            final String eliminaCanzone = "DELETE FROM playlistcanzone WHERE titolo='" + titolo + "' AND autore='" + autore + "'";
+            final String eliminaCanzone = "DELETE FROM playlistcanzone WHERE titolo='" + newTi + "' AND autore='" + newAu + "'";
 
             Boolean resultSetElimina = handler.insert(eliminaCanzone, dbconnection);
 
@@ -349,8 +394,14 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public ArrayList<Canzone> CercaBranoT(String ti) throws RemoteException {
         try{
+            String newTi = ti;
+            if(ti.contains("'"))
+            {
+                newTi = ti.replace("'", "''");
+            }
+
             final String selezionaCanzoni =
-                    "SELECT * FROM canzone WHERE titolo='" + ti + "';";
+                    "SELECT * FROM canzone WHERE titolo='" + newTi + "';";
 
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection= handler.connectDB();
@@ -378,8 +429,15 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     @Override
     public ArrayList<Canzone> CercaBranoA(String au) throws RemoteException {
         try{
+           String newAu = au;
+            if(au.contains("'"))
+            {
+                newAu = au.replace("'", "''");
+            }
+
+
             final String selezionaCanzoni =
-                    "SELECT * FROM canzone WHERE autore='" + au + "';";
+                    "SELECT * FROM canzone WHERE autore='" + newAu + "';";
 
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection=handler.connectDB();
@@ -508,14 +566,25 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }
 
     @Override
-    public ArrayList<Emozione> CercaEmozioni(String canzone) throws RemoteException {
+    public ArrayList<Emozione> CercaEmozioni(String canzone, String autore) throws RemoteException {
         try{
+            String newTi = canzone;
+            if(canzone.contains("'"))
+            {
+                newTi = canzone.replace("'", "''");
+            }
+            String newAu = autore;
+            if(autore.contains("'"))
+            {
+                newAu = autore.replace("'", "''");
+            }
+
             final String selezionaEmozioni =
                     "SELECT associa.titolocanzone, associa.autorecanzone, associa.categiriaemozione, associa.idutente, associa.note, associa.punteggio FROM associa" +
                             " LEFT JOIN utente ON associa.idutente=utente.userid" +
                             " LEFT JOIN emozione ON associa.categiriaemozione=emozione.categoria" +
                             " LEFT JOIN canzone ON associa.titolocanzone=canzone.titolo AND associa.autorecanzone=canzone.autore" +
-                            " WHERE associa.titolocanzone='" + canzone + "'";
+                            " WHERE associa.titolocanzone='" + newTi + "' AND associa.autorecanzone='" + newAu + "'";
 
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection=handler.connectDB();
