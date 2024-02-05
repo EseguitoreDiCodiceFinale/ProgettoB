@@ -135,8 +135,8 @@ public class Client extends Thread{
         return server.VisualizzaCanzoni();
     }
 
-    public synchronized ArrayList<Emozione> CercaEmozioni(String canzone) throws RemoteException{
-        return server.CercaEmozioni(canzone);
+    public synchronized ArrayList<Emozione> CercaEmozioni(String canzone, String autore) throws RemoteException{
+        return server.CercaEmozioni(canzone, autore);
     }
 
     public static void main(String[] args){

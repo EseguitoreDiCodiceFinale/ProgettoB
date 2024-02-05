@@ -16,5 +16,5 @@ public interface ServerInterface extends Remote {
     ArrayList<Canzone> CercaBranoY(String anno) throws RemoteException;
     ArrayList<Playlist> CercaPlaylist(String nomeU) throws RemoteException;
     ArrayList<Canzone> VisualizzaCanzoni() throws RemoteException;
-    ArrayList<Emozione> CercaEmozioni(String canzone) throws RemoteException;
+    ArrayList<Emozione> CercaEmozioni(String canzone, String autore) throws RemoteException;
 }

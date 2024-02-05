@@ -130,6 +130,8 @@ public class InterfacciaInizialeController {
     @FXML
     private TextField nomeCanzoneV;
     @FXML
+    private TextField nomeCanzoneA;
+    @FXML
     private Label titolo1;
 
     @FXML
@@ -702,7 +704,7 @@ public class InterfacciaInizialeController {
     @FXML
     public void visualizzaEmozioniCButton(ActionEvent event) throws RemoteException {
         if (!(nomeCanzoneV.getText().equals(""))) {
-            for(var item : Client.getInstance().CercaEmozioni(" " +nomeCanzoneV.getText()))
+            for(var item : Client.getInstance().CercaEmozioni(" " +nomeCanzoneV.getText(), nomeCanzoneA.getText()))
             {
                 areaemozioni.getItems().add(item);
             }

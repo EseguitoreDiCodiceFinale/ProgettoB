@@ -594,12 +594,12 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             while(resultSet.next())
             {
                 String titolo = resultSet.getString("titolocanzone");
-                String autore = resultSet.getString("autorecanzone");
+                String autor = resultSet.getString("autorecanzone");
                 String categoria = resultSet.getString("categiriaemozione");
                 String utente = resultSet.getString("idutente");
                 String note = resultSet.getString("note");
                 String punteggio = resultSet.getString("punteggio");
-                Emozione emozione = new Emozione(categoria, punteggio, note, titolo, autore, utente);
+                Emozione emozione = new Emozione(categoria, punteggio, note, titolo, autor, utente);
                 listaEmozioni.add(emozione);
             }
             return listaEmozioni;
