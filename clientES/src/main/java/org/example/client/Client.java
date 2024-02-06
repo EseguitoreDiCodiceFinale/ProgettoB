@@ -6,17 +6,38 @@ import java.rmi.*;
 import java.rmi.registry.*;
 import java.util.ArrayList;
 
+/**
+ * @author Alessio Zangarini
+ * Classe dei client che utilizza i metodi del server tramite RMI
+ *
+ * Estende UnicastRemoteObject e ServerInterface per fornire servizi remoti
+ */
 public class Client extends Thread{
     private static Client instance=null;
     private final  short REGISTRYPORT = 1099;
     private ServerInterface server;
     private String UtenteAttuale;
 
+    /**
+     * @author Alessio Zangarini
+     * Costruttore per la classe Client
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     * @throws NotBoundException se non si trova il server associato al registro utilizzato dal client
+     */
     public Client() throws RemoteException, NotBoundException{
         super("ClientES");
         Connessione();
     }
 
+    /**
+     * @author Alessio Zangarini
+     * Metodo per creare l'istanza col server
+     *
+     * @return instance Restituisce i dati dell'istanza
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     */
     public static Client getInstance() throws RemoteException{
         if(instance==null){
             try {
@@ -25,11 +46,26 @@ public class Client extends Thread{
         }
         return instance;
     }
+
+    /**
+     * @author Alessio Zangarini
+     * Metodo per effettuare la connessione col server
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     * @throws NotBoundException se non si trova il server associato al registro utilizzato dal client
+     */
     private synchronized void Connessione() throws RemoteException, NotBoundException{
         Registry registro = LocateRegistry.getRegistry(REGISTRYPORT);
         server = (ServerInterface) registro.lookup("ServerES");
         System.out.println("Connesso a: " + server.toString());
     }
+
+    /**
+     * @author Alessio Zangarini
+     * Metodo per avviare il client
+     * @return 1-17 restituisce un valore diverso per ogni campo inserito in modo sintatticamente scorretto
+     * @return 18 se non ci sono errori di sintassi
+     */
     public void run(){}
     public synchronized int Registrazione(String username, String nome, String cognome, String via, String numero, String cap, String comune, String provincia, String email, String password) throws RemoteException {
         if(username.length()<3){
@@ -135,8 +171,8 @@ public class Client extends Thread{
         return server.VisualizzaCanzoni();
     }
 
-    public synchronized ArrayList<Emozione> CercaEmozioni(String canzone, String autore) throws RemoteException{
-        return server.CercaEmozioni(canzone, autore);
+    public synchronized ArrayList<Emozione> VisualizzaEmozioni(String canzone, String autore) throws RemoteException{
+        return server.VisualizzaEmozioni(canzone, autore);
     }
 
     public static void main(String[] args){

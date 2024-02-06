@@ -11,14 +11,37 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * @author Simone Donaduzzi
+ * Fornisce un' implementazione del server, in modo che dei client possano utilizzare
+ * i suoi metodi da remoto
+ *
+ * Estende UnicastRemoteObject e ServerInterface per fornire servizi remoti
+ */
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
     private final short REGISTRYPORT = 1099;
     private final short SERVERPORT= 1099;
     public Connection dbconnection;
+
+    /**
+     * @author Simone Donaduzzi
+     * Costruttore per la classe ServerImpl.
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     */
     public ServerImpl() throws RemoteException{
         super();
     }
+
+    /**
+     * @author Simone Donaduzzi
+     * Metodo per avviare la connessione al server tramite RMI
+     * Stabilisce pure la connessione al database
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     * @throws SQLException se si verifica un errore di SQL
+     */
     public void run() throws RemoteException, SQLException {
         ServerImpl server= new ServerImpl();
         Registry registro;
@@ -62,6 +85,18 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     }*/
     }
 
+
+    /**
+     * @author Simone Donaduzzi
+     * Metodo per la registrazione dell'utente
+     *
+     * @param u Dati dell' utente da inserire
+     *
+     * @return esito Registrazione effettuata
+     * @return false Errore nella registrazione, inserimento dei dati invalido
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     */
     @Override
     public boolean Registrazione(Utente u) throws RemoteException{
         try{
@@ -94,6 +129,18 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
+    /**
+     * @author Simone Donaduzzi
+     * Metodo per il login dell'utente
+     *
+     * @param username Nome utente dell'utente che deve effettuare il login
+     * @param password Password dell'utente
+     *
+     * @return true Login effettuato
+     * @return false Errore nel login, utente non esiste
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     */
     @Override
     public boolean Login(String username, String password) throws RemoteException {
         try{
@@ -121,6 +168,19 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
+    /**
+     * @author Simone Donaduzzi
+     * Metodo per inserire una nuova emozione da associare ad una canzone
+     *
+     * @param e Emozione da inserire
+     *
+     * @return 0 Emozione inserita con successo
+     * @return 1 Emozione già registrata per questa canzone
+     * @return 2 La canzone inserita è inesistente
+     * @return 3 Errore eccezione SQL
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     */
     @Override
     public int InserisciEmozione(Emozione e) throws RemoteException {
         try{
@@ -199,6 +259,21 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return 4;
     }
 
+    /**
+     * @author Simone Donaduzzi
+     * Metodo per creare una nuova playlist
+     *
+     * @param nome Nome della playlist da inserire
+     * @param titolo Titolo della canzone
+     * @param nomeU Nome utente dell'utente che vuole creare la playlist
+     * @param autore Nome dell'autore della canzone
+     *
+     * @return 0 Playlist creata con successo
+     * @return 1 Playlist già presente
+     * @return 2 La canzone inserita non esiste
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     */
     @Override
     public int CreaPlaylist(String nome, String titolo, String nomeU, String autore) throws RemoteException {
         try{
@@ -266,6 +341,22 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
+    /**
+     * @author Simone Donaduzzi
+     * Metodo per inserire una nuova canzone nella playlist
+     *
+     * @param nome Nome della playlist nella quale inserire la canzone
+     * @param titolo Titolo della canzone
+     * @param nomeU Nome utente dell'utente che vuole inserire la canzone
+     * @param autore Nome dell'autore della canzone
+     *
+     * @return 0 Canzone inserita con successo
+     * @return 1 Playlist inesistente
+     * @return 2 La canzone inserita non esiste
+     * @return 3 La canzone inserita è gia presente nella playlist
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     */
     @Override
     public int InserisciCanzone(String nomeU, String nome, String titolo, String autore) throws RemoteException {
         try{
@@ -325,6 +416,23 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
+    /**
+     * @author Simone Donaduzzi
+     * Metodo per eliminare una canzone dalla playlist
+     *
+     * @param nome Nome della canzone da rimuovere dalla playlist
+     * @param titolo Titolo della canzone
+     * @param nomeU Nome utente dell'utente che vuole rimuovere la canzone
+     * @param autore Nome dell'autore della canzone da rimuovere
+     *
+     * @return 0 Canzone inserita con successo
+     * @return 1 Playlist inesistente
+     * @return 2 La canzone inserita non esiste
+     * @return 3 La canzone non è presente nella playlist
+     * @return 4 Errore eccezione SQL
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     */
     @Override
     public int EliminaCanzone(String nomeU, String nome, String titolo, String autore) throws RemoteException {
         try{
@@ -391,6 +499,17 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return 4;
     }
 
+    /**
+     * @author Simone Donaduzzi
+     * Metodo per cercare una canzone in base al titolo
+     *
+     * @param ti Titolo del brano da cercare
+     *
+     * @return listacanzoni Restituisce l'arraylist contenente le canzoni
+     * @return null Restituisce il risultato nullo se non sono state trovate canzoni
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     */
     @Override
     public ArrayList<Canzone> CercaBranoT(String ti) throws RemoteException {
         try{
@@ -426,6 +545,17 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
+    /**
+     * @author Simone Donaduzzi
+     * Metodo per cercare una canzone in base all'autore
+     *
+     * @param au Autore del brano da cercare
+     *
+     * @return listacanzoni Restituisce l'arraylist contenente le canzoni
+     * @return null Restituisce il risultato nullo se non sono state trovate canzoni
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     */
     @Override
     public ArrayList<Canzone> CercaBranoA(String au) throws RemoteException {
         try{
@@ -462,6 +592,17 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
+    /**
+     * @author Simone Donaduzzi
+     * Metodo per cercare una canzone in base all'anno
+     *
+     * @param an Anno del brano da cercare
+     *
+     * @return listacanzoni Restituisce l'arraylist contenente le canzoni
+     * @return null Restituisce il risultato nullo se non sono state trovate canzoni
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     */
     @Override
     public ArrayList<Canzone> CercaBranoY(String an) throws RemoteException {
         try{
@@ -487,6 +628,18 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             return null;
         }
     }
+
+    /**
+     * @author Simone Donaduzzi
+     * Metodo per cercare una playlist
+     *
+     * @param nomeU Nome dell'utente che vuole cercare la playlist
+     *
+     * @return listaplaylist Restituisce l'arraylist contenente le playlist
+     * @return null Restituisce il risultato nullo se non sono state trovate playlist
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     */
     @Override
     public ArrayList<Playlist> CercaPlaylist(String nomeU) throws RemoteException {
         try{
@@ -536,6 +689,15 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return null;
     }
 
+    /**
+     * @author Simone Donaduzzi
+     * Metodo per visualizzare tutte le canzoni
+     *
+     * @return listacanzoni Restituisce l'arraylist contenente le canzoni
+     * @return null Restituisce il risultato nullo se non sono state trovate canzoni
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     */
     @Override
     public ArrayList<Canzone> VisualizzaCanzoni() throws RemoteException {
         try{
@@ -565,8 +727,20 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
     }
 
+    /**
+     * @author Simone Donaduzzi
+     * Metodo per cercare le emozioni legate a una canzone
+     *
+     * @param canzone Titolo del brano sul quale cercare le emozioni associate
+     * @param autore Autore del brano sul quale cercare le emozioni associate
+     *
+     * @return listaemozioni Restituisce l'arraylist contenente le emozioni
+     * @return null Restituisce il risultato nullo se non sono state trovate emozioni
+     *
+     * @throws RemoteException se si verifica un errore durante la comunicazione remota
+     */
     @Override
-    public ArrayList<Emozione> CercaEmozioni(String canzone, String autore) throws RemoteException {
+    public ArrayList<Emozione> VisualizzaEmozioni(String canzone, String autore) throws RemoteException {
         try{
             String newTi = canzone;
             if(canzone.contains("'"))

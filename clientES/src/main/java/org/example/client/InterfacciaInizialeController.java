@@ -1,6 +1,4 @@
 package org.example.client;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -9,13 +7,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.example.common.Canzone;
-import org.example.common.Playlist;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * @author Alessio Zangarini
+ *
+ * Classe Controller che gestisce l'interfaccia del client
+ */
 public class InterfacciaInizialeController {
     @FXML
     public Button inserisciemozioni;
@@ -200,6 +202,11 @@ public class InterfacciaInizialeController {
     private Scene scene;
 
 
+    /**
+     * @author Giorgio Piccirilli
+     * Metodo di inizializzazione delll'interfaccia del client
+     *
+     */
     @FXML
     public void initialize() {
         choiceboxRicerca.getItems().addAll("Titolo","Autore","Anno");
@@ -308,6 +315,11 @@ public class InterfacciaInizialeController {
     }
 
 
+    /**
+     * @author Alessio Zangarini
+     * Metodo per la registrazione alla pressione del bottone
+     * @throws IOException per gli errori legati alle streams
+     */
     @FXML
     public void completaRegistrazioneButton(ActionEvent event) throws IOException {
         if(!(nomeutenteid.getText().equals("") || nome.getText().equals("")  || cognome.getText().equals("")  ||email.getText().equals("")  || password.getText().equals("") || via.getText().equals("") || numerocivico.getText().equals("") || codicepostale.getText().equals("") ||  codicepostale.getText().length()<5 || comune.getText().equals("") || provincia.getText().equals("")))
@@ -469,6 +481,11 @@ public class InterfacciaInizialeController {
         }
     }
 
+    /**
+     * @author Alessio Zangarini
+     * Metodo per il login alla pressione del bottone
+     * @throws IOException per gli errori legati alle streams
+     */
     @FXML
     public void completaLoginButton(ActionEvent event) throws IOException {
         if(!(nomeUtente1.equals("") || password1.equals(""))){
@@ -508,6 +525,11 @@ public class InterfacciaInizialeController {
         }
     }
 
+    /**
+     * @author Alessio Zangarini
+     * Metodo per inserire le emozioni alla pressione del bottone
+     * @throws IOException per gli errori legati alle streams
+     */
     @FXML
     void inserisciEmozioniCButton(ActionEvent event) throws RemoteException {
         if(!(choicebox_emozione.getValue().toString().equals("") || choicebox_score.getValue().toString().equals("") || emozioneCanzone.getText().equals("") || emozioneAutoreInserire.getText().equals(""))){
@@ -554,6 +576,11 @@ public class InterfacciaInizialeController {
         }
     }
 
+    /**
+     * @author Alessio Zangarini
+     * Metodo per creare le playlist alla pressione del bottone
+     * @throws IOException per gli errori legati alle streams
+     */
     @FXML
     void creaPlaylistCButton(ActionEvent event) throws RemoteException {
         //controlli client
@@ -592,6 +619,11 @@ public class InterfacciaInizialeController {
         }
     }
 
+    /**
+     * @author Alessio Zangarini
+     * Metodo per aggiungre le canzoni alla pressione del bottone
+     * @throws IOException per gli errori legati alle streams
+     */
     @FXML
     void aggiungiCanzoneCButton(ActionEvent event) throws RemoteException{
         if(!(nomePlaylistI.getText().equals("")|| playlistCanzoneI.getText().equals(""))){
@@ -634,6 +666,12 @@ public class InterfacciaInizialeController {
             alert.showAndWait();
         }
     }
+
+    /**
+     * @author Alessio Zangarini
+     * Metodo per eliminare alla pressione del bottone
+     * @throws IOException per gli errori legati alle streams
+     */
     @FXML
     void eliminaCanzoneCButton(ActionEvent event) throws RemoteException{
         if(!(nomePlaylistIC.getText().equals("")|| playlistCanzoneIC.getText().equals("") ||  autorePD.getText().equals(""))){
@@ -701,15 +739,27 @@ public class InterfacciaInizialeController {
         }
         catch(Exception e){ e.printStackTrace();} */
     }
+
+    /**
+     * @author Alessio Zangarini
+     * Metodo per visualizzare le emozioni alla pressione del bottone
+     * @throws IOException per gli errori legati alle streams
+     */
     @FXML
     public void visualizzaEmozioniCButton(ActionEvent event) throws RemoteException {
         if (!(nomeCanzoneV.getText().equals(""))) {
-            for(var item : Client.getInstance().CercaEmozioni(" " +nomeCanzoneV.getText(), nomeCanzoneA.getText()))
+            for(var item : Client.getInstance().VisualizzaEmozioni(" " +nomeCanzoneV.getText(), nomeCanzoneA.getText()))
             {
                 areaemozioni.getItems().add(item);
             }
         }
     }
+
+    /**
+     * @author Alessio Zangarini
+     * Metodo per effettuare il logout alla pressione del bottone
+     * @throws IOException per gli errori legati alle streams
+     */
     @FXML
     public void logoutButton(ActionEvent event){
         mostracanzoni_pane.setVisible(false);
@@ -817,6 +867,11 @@ public class InterfacciaInizialeController {
         mostracanzoni_pane.setVisible(false);
     }
 
+    /**
+     * @author Alessio Zangarini
+     * Metodo per visualizzare le playlist alla pressione del bottone
+     * @throws IOException per gli errori legati alle streams
+     */
     @FXML
     void visualizzaPlaylistButton(ActionEvent event) throws RemoteException {
         visualizza_playlist_pane.setVisible(true);
@@ -829,12 +884,18 @@ public class InterfacciaInizialeController {
         playlistI_pane.setVisible(false);
         eliminacanzone_pane.setVisible(false);
         mostracanzoni_pane.setVisible(false);
+        textAreaPlaylist.getItems().clear();
         for(var item : Client.getInstance().VisualizzaPlaylist())
         {
             textAreaPlaylist.getItems().add(item);
         }
     }
 
+    /**
+     * @author Alessio Zangarini
+     * Metodo per visualizzare le canzoni alla pressione del bottone
+     * @throws IOException per gli errori legati alle streams
+     */
     @FXML
     void visualizzacanzoniButton(ActionEvent event) throws RemoteException {
         mostracanzoni_pane.setVisible(true);
@@ -847,6 +908,7 @@ public class InterfacciaInizialeController {
         eliminacanzone_pane.setVisible(false);
         visualizza_playlist_pane.setVisible(false);
         logocentrale.setVisible(false);
+        textareacanzoni.getItems().clear();
         for(var item : Client.getInstance().VisualizzaCanzoni())
         {
             textareacanzoni.getItems().add(item);

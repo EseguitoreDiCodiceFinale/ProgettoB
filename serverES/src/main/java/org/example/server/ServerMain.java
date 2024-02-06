@@ -3,6 +3,10 @@ package org.example.server;
 import java.rmi.RemoteException;
 import java.sql.SQLException;
 
+/**
+ * @author Simone Donaduzzi
+ * Classe principale del server
+ */
 public class ServerMain {
     public static void main(String[] args) {
         try {

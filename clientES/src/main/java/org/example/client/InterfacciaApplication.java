@@ -8,8 +8,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.Objects;
-
+/**
+ * @author Alessio Zangarini
+ * Classe per avviare l'interfaccia
+ *
+ * Estende Application per fornire i servizi di javafx
+ */
 public class InterfacciaApplication extends Application {
 
     @Override

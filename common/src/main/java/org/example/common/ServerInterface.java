@@ -4,6 +4,10 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+/**
+ * @author Alessio Zangarini
+ * Classe interfaccia del server, utilizzata dal client tramite RMI
+ */
 public interface ServerInterface extends Remote {
     boolean Registrazione(Utente u) throws RemoteException;
     boolean Login(String username, String password) throws RemoteException;
@@ -16,5 +20,5 @@ public interface ServerInterface extends Remote {
     ArrayList<Canzone> CercaBranoY(String anno) throws RemoteException;
     ArrayList<Playlist> CercaPlaylist(String nomeU) throws RemoteException;
     ArrayList<Canzone> VisualizzaCanzoni() throws RemoteException;
-    ArrayList<Emozione> CercaEmozioni(String canzone, String autore) throws RemoteException;
+    ArrayList<Emozione> VisualizzaEmozioni(String canzone, String autore) throws RemoteException;
 }
