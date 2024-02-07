@@ -274,7 +274,7 @@ public class InterfacciaInizialeController {
         creaplaylist.setVisible(false);
         aggiungibrano.setVisible(false);
         eliminabrano.setVisible(false);
-        visualizzaE.setVisible(false);
+        visualizzaE.setVisible(true);
         inserisciemozioni.setVisible(false);
         visualizzaplaylist.setVisible(false);
         btlogout.setVisible(false);
