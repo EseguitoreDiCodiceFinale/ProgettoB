@@ -14,7 +14,6 @@ public class Canzone implements Serializable {
     private String titolo;
     private String autore;
     private String anno;
-    // private String album;
 
     /**
      * @author Simone Donaduzzi - Alessio Zangarini
@@ -28,7 +27,6 @@ public class Canzone implements Serializable {
         this.titolo = titolo;
         this.autore = autore;
         this.anno = anno;
-        //this.album = album;
     }
 
     /**

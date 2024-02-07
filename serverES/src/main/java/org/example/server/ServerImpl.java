@@ -33,7 +33,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     public ServerImpl() throws RemoteException{
         super();
     }
-
     /**
      * @author Simone Donaduzzi
      * Metodo per avviare la connessione al server tramite RMI
@@ -56,33 +55,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         DatabaseHandler connection = new DatabaseHandler();
         dbconnection = connection.connectDB();
         if (dbconnection != null) {
-          //  connection.DBInitialization();
             System.out.println("Connessione al database effettuata con successo");
         } else {
             System.out.println("Connessione al database NON effettuata");
         }
-        /*try{
-            DatabaseHandler dbh = new DatabaseHandler();
-            dbh.DBInitialization();
-        }catch (SQLException e){
-            e.printStackTrace();
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            Connessione();
-        }catch (RemoteException e){
-            System.out.println("Errore avvio del server");
-            e.printStackTrace();
-        }
-    }
-
-    public void Connessione() throws RemoteException{
-        ServerImpl server = new ServerImpl();
-        Registry registro = LocateRegistry.createRegistry(REGISTRYPORT);
-        registro.rebind("ServerES", server);
-        System.out.println("Server Ready");
-    }*/
     }
 
 
@@ -150,7 +126,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
             DatabaseHandler handler = DatabaseHandler.getInstance();
             dbconnection = handler.connectDB();
-            //handler.disconnectDB(); ?
             ResultSet resultSet = handler.select(verificaLogin, dbconnection);
 
             if (!resultSet.next()) {
@@ -579,9 +554,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 String titolo = resultSet.getString("titolo");
                 String autore = resultSet.getString("autore");
                 String anno = resultSet.getString("anno");
-                //String album = resultSet.getString("album");
-                //String durata = resultSet.getString("durata");
-                //String genere = resultSet.getString("genere");
                 Canzone canzone = new Canzone(titolo, autore, anno);
                 listaCanzoni.add(canzone);
             }

@@ -35,72 +35,50 @@ public class InterfacciaInizialeController {
     public Button eliminabrano;
     @FXML
     private Button accedi;
-
     @FXML
     private TextField codicepostale;
-
     @FXML
     private TextField cognome;
-
     @FXML
     private TextField comune;
-
     @FXML
     private TextField email;
-
     @FXML
     private Button login;
-
     @FXML
     private TextField nome;
-
     @FXML
     private TextField eliminaAutorePlaylist;
-
     @FXML
     private TextField playlistAutore;
-
     @FXML
     private TextField playlistAutoreCanzone;
-
     @FXML
     private TextField nomeUtente1;
-
     @FXML
     private TextField nomeutenteid;
-
     @FXML
     private TextField numerocivico;
-
     @FXML
     private AnchorPane pane;
-
     @FXML
     private PasswordField password;
-
     @FXML
     private PasswordField password1;
-
     @FXML
     private TextField provincia;
-
     @FXML
     private Button registrati;
-
     @FXML
     private Button registrati1;
-
     @FXML
     private Button ricercaa;
     @FXML
     private Button emozionec;
     @FXML
     private Button playlistc;
-
-
     @FXML
     private Button ricercat;
-
     @FXML
     private Pane signin_pane;
     @FXML
@@ -123,10 +101,8 @@ public class InterfacciaInizialeController {
     public Pane eliminacanzone_pane;
     @FXML
     private ListView areaemozioni;
-
     @FXML
     private Label titolo;
-
     @FXML
     private Button visualizzac;
     @FXML
@@ -135,7 +111,6 @@ public class InterfacciaInizialeController {
     private TextField nomeCanzoneA;
     @FXML
     private Label titolo1;
-
     @FXML
     private TextField titolor;
     @FXML
@@ -146,8 +121,6 @@ public class InterfacciaInizialeController {
     private TextField nomePlaylistIC;
     @FXML
     private TextField playlistCanzoneIC;
-
-
     @FXML
     private TextField via;
     @FXML
@@ -156,7 +129,6 @@ public class InterfacciaInizialeController {
     private Label titoloInserisci;
     @FXML
     private Label titoloInserisci2;
-
     @FXML
     private TextField nomePlaylist;
     @FXML
@@ -191,16 +163,10 @@ public class InterfacciaInizialeController {
     private  TextField autorePI;
     @FXML
     private TextField autorePD;
-    /*@FXML
-    private TextArea TextAreaVisualizzaPlaylist;
-*/
-
     @FXML
     private Button visualizzaE;
-
     private Stage stage;
     private Scene scene;
-
 
     /**
      * @author Giorgio Piccirilli
@@ -722,24 +688,6 @@ public class InterfacciaInizialeController {
         }
     }
 
-    @FXML
-    public void cercaPlaylistButton(ActionEvent event){
-       /* String input = nomePlaylist.getText();
-        try {
-            ArrayList<Playlist> output = Client.getInstance().CercaPlaylist(input);
-            if (output.size() == 0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Risultato ricerca:");
-                alert.setHeaderText(null);
-                alert.setContentText("la playlist non è stato trovata");
-                alert.showAndWait();
-            } else {
-
-            }
-        }
-        catch(Exception e){ e.printStackTrace();} */
-    }
-
     /**
      * @author Alessio Zangarini
      * Metodo per visualizzare le emozioni alla pressione del bottone
@@ -915,25 +863,4 @@ public class InterfacciaInizialeController {
         }
     }
 
-
-/*
-    @FXML
-    void visualizzaEmozioniCButton(ActionEvent event) throws RemoteException {
-        mostracanzoni_pane.setVisible(false);
-        signin_pane.setVisible(false);
-        signup_pane.setVisible(false);
-        emotionV_pane.setVisible(false);
-        emotion_pane.setVisible(false);
-        playlist_pane.setVisible(false);
-        playlistI_pane.setVisible(false);
-        visualizza_playlist_pane.setVisible(true);
-        logocentrale.setVisible(false);
-
-        Playlist playlist = new Playlist("", null,"");
-        for(var item : Client.getInstance().VisualizzaPlaylist())
-        {
-            textAreaPlaylist.getItems().add(item);
-        }
-    }
-*/
 }
