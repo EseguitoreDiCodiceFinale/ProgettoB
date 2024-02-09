@@ -646,7 +646,7 @@ public class InterfacciaInizialeController {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Eliminazione riuscita");
                     alert.setHeaderText(null);
-                    alert.setTitle("La canzone è stata eliminata con successo");
+                    alert.setContentText("La canzone è stata eliminata con successo");
                     alert.showAndWait();
                     break;
                 case 1:
@@ -757,7 +757,6 @@ public class InterfacciaInizialeController {
 
     @FXML
     void visualizzaEmozioniButton(ActionEvent event) {
-        //da fare
         signin_pane.setVisible(false);
         signup_pane.setVisible(false);
         emotionV_pane.setVisible(true);

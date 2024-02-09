@@ -10,18 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59a733cf-a8b6-4a44-a7a1-503883b471ec" name="Changes" comment="login">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/clientES_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/serverES_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clientES/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/serverES/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clientES/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/clientES/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/clientES/src/main/java/org/example/client/InterfacciaInizialeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/clientES/src/main/java/org/example/client/InterfacciaInizialeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/example/common/Canzone.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/example/common/Canzone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverES/src/main/java/org/example/server/DatabaseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverES/src/main/java/org/example/server/DatabaseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverES/src/main/java/org/example/server/ServerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverES/src/main/java/org/example/server/ServerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serverES/src/main/java/org/example/server/ServerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/serverES/src/main/java/org/example/server/ServerMain.java" afterDir="false" />
     </list>
     <list id="f5e382d2-7104-4578-a3b5-c977be57cfd1" name="Changes by simon" comment="" />
     <option name="SHOW_DIALOG" value="false" />

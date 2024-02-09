@@ -1,1 +1,1 @@
-java -jar out/artifacts/clientES_jar/clientES.jar
+java --module-path javafx-sdk-19\lib --add-modules javafx.controls,javafx.fxml -jar out/artifacts/clientES_jar/clientES.jar

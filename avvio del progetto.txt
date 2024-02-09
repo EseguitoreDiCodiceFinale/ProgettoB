@@ -1,0 +1,2 @@
+Per l'esecuzione del progetto, basterà avviare i due file ClientES.bat e ServerES.bat, ma dovranno essere correttamente installati nel sistema Java e Maven, javaFX è già presente nella cartella del progetto, perciò non è necessaria la sua installazione, in caso ci siano errori nell'avvio, sarà necessario inserire il seguente comando nel terminale di windows:
+-set PATH_TO_FX "percorso alla cartella javafx-sdk-19\lib presente nel progetto"
